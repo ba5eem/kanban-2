@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "Baseem",
+    "username": null,
     "password": null,
-    "database": "database_name_goes_here",
+    "database": "fbookdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

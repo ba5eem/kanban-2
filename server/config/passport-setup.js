@@ -1,8 +1,8 @@
 const passport         = require('passport');
-const GoogleStrategy   = require('passport-google-oauth2').Strategy;
-const keys             = require('./keys');
+const FacebookStrategy = require('passport-facebook');
+const keys             = require('./env.keys.js');
 const db               = require('../models');
-const {user}           = db;
+const {User}           = db;
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -15,29 +15,15 @@ passport.deserializeUser((id, done) => {
 });
 
 
-passport.use(
-    new GoogleStrategy({
-        // options for google strategy
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret,
-        callbackURL: 'http://localhost:8080/auth/google/redirect'
-    }, (accessToken, refreshToken , profile, done) => {
-        // passport callback function
-        user.findOne({where: {googleid:profile.id}}).then((currentUser) =>{
-          if(currentUser){
-            //already have this user
-            console.log('user already exists****************');
-            done(null, currentUser);
-          }
-        })
-        db.user.create({
-          username: profile.displayName,
-          googleid: profile.id,
-          phonenumber: "8081234567",
-          image: profile._json.image.url
-        }).then((newUser)=>{
-            console.log('new user ****************');
-            done(null, newUser);
-        })
-    })
-);
+passport.use(new FacebookStrategy({
+    clientID: keys.facebook.FACEBOOK_APP_ID,
+    clientSecret: keys.facebook.FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'photos', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));

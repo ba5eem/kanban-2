@@ -8,11 +8,11 @@ const bcrypt          = require('bcrypt');
 const routes          = require('./routes');
 const path            = require('path');
 const db              = require('./models');
-const keys            = require('./config/keys');
+const keys            = require('./config/env.keys.js');
 const Redis           = require('connect-redis')(session);
 const cors            = require('cors')
 const saltRounds      = 12;
-const PORT            = process.env.PORT || 8080;
+const PORT            = process.env.PORT || 3000;
 const app             = express();
 
 
@@ -45,6 +45,6 @@ app.get('*', ( req, res ) => {
 });
 
 const server = app.listen(PORT,() => {
-  //db.sequelize.sync( { force: false } ); //this is to link with your DB defined in the config file - set to true to overwrite, set to false to not overwrite:
+  db.sequelize.sync( { force: true } ); //this is to link with your DB defined in the config file - set to true to overwrite, set to false to not overwrite:
   console.log(`Server connected on PORT: ${PORT}`);
 });
