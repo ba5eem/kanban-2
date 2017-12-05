@@ -41,7 +41,7 @@ app.get('/auth/facebook',
   passport.authenticate('facebook',{scope: ['email']}));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook',  { session: false, successRedirect: '/profile',failureRedirect : '/failed'}),
+    passport.authenticate('facebook',  { successRedirect: '/profile',failureRedirect : '/failed'}),
     
     // on succes
     function(req,res) {
@@ -74,10 +74,12 @@ app.get('/', ( req, res ) =>{
 });
 
 app.get('/profile', (req,res)=>{
+  console.log('profile page')
   res.json('profile page');
 })
 
 app.get('/failed', (req,res)=>{
+    console.log('failed page')
   res.json('failed page');
 })
 

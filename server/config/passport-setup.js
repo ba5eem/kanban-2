@@ -5,16 +5,13 @@ const db               = require('../models');
 const {user}           = db;
 
 passport.serializeUser((user, done) => {
-  console.log('Baseem - step 2 - serializing ')
-  console.log(user);
+  console.log("serializing")
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  console.log('deserializing shit')
-  console.log(id);
     user.findById(id).then((user) => {
-      console.log(user)
+      console.log("deserializing")
         done(null, user);
     });
 });
@@ -43,15 +40,10 @@ const fbCallBack = function(accessToken, refreshToken, profile, cb){
         plain: true
         }).then((member))
         console.log('i created a user, now i will return the callback with the user')
-        console.log(member);
-        console.log("********************************************************************************************************");
         return cb(null,member);
       }//END OF USER DOESNT EXIST CONDITION
       else{
-        console.log("********************************************************************************************************");
         console.log('user already exists, now I will return the cb with the found user')
-        console.log(member);
-        console.log("********************************************************************************************************");
         return cb(null,member)
       }
     })   
