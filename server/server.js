@@ -23,9 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //Authentication:
 // set up session cookies
-app.use(cookieSession({
-  maxAge: 24*60*60*1000,
-  keys: [keys.session.cookieKey]
+app.use(session({
+  secret: 'something',
+  resave: true,
+  saveUninitialized: true
 }))
 
 // initialize passport
@@ -37,14 +38,28 @@ app.use(passport.session());
 
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook',{scope: ['email']}));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+    passport.authenticate('facebook',  { session: false, successRedirect: '/profile',failureRedirect : '/failed'}),
+    
+    // on succes
+    function(req,res) {
+        // return the token or you would wish otherwise give eg. a succes message
+        console.log('i got here which means success')
+        res.json('sucess');
+    },
+    
+    // on error; likely to be something FacebookTokenError token invalid or already used token,
+    // these errors occur when the user logs in twice with the same token
+    function(err,req,res,next) {
+        // You could put your own behavior in here, fx: you could force auth again...
+        // res.redirect('/auth/facebook/');
+        if(err) {
+            res.json('error', 'something went wrong - line 59 - user already exists');
+        }
+    }
+);
 
 
 app.get('/', ( req, res ) =>{
@@ -56,8 +71,15 @@ app.get('/', ( req, res ) =>{
   }).then((user)=>{
     res.json(user)
   })
-
 });
+
+app.get('/profile', (req,res)=>{
+  res.json('profile page');
+})
+
+app.get('/failed', (req,res)=>{
+  res.json('failed page');
+})
 
 app.get('*', ( req, res ) => {
   res.json('This page does not exist, 404 not found');
