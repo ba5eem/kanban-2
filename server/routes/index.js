@@ -8,4 +8,4 @@ const auth       = require('./auth.js');
 route.use('/temp', _temp);
 route.use('/auth', auth);
 
-module.exports = indexRoute;
+module.exports = route;
