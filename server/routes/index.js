@@ -1,9 +1,11 @@
 //jshint esversion: 6
 const express     = require('express');
 const app         = express();
-const indexRoute  = express.Router();
+const route  = express.Router();
 const _temp       = require('./TempRoute/_temp.js');
+const auth       = require('./auth.js');
 
-indexRoute.use('/temp', _temp);
+route.use('/temp', _temp);
+route.use('/auth', auth);
 
 module.exports = indexRoute;

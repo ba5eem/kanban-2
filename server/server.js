@@ -1,51 +1,50 @@
 const express         = require('express');
 const session         = require('express-session');
+const cookieSession   = require('cookie-session');
 const bodyParser      = require('body-parser');
-const methodOverride  = require('method-override');
 const passport        = require('passport');
+const passportSetup   = require('./config/passport-setup');
 const bcrypt          = require('bcrypt');
 const routes          = require('./routes');
 const path            = require('path');
 const db              = require('./models');
-const {ModelName}     = db;
+const keys            = require('./config/keys');
 const Redis           = require('connect-redis')(session);
-const LocalStrategy   = require('passport-local').Strategy;
+const cors            = require('cors')
 const saltRounds      = 12;
-const PORT            = process.env.PORT || 3000;
+const PORT            = process.env.PORT || 8080;
 const app             = express();
 
+
+//need this for deployment
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
-app.use(methodOverride('_method'));
 //Authentication:
-app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+// set up session cookies
+app.use(cookieSession({
+  maxAge: 24*60*60*1000,
+  keys: [keys.session.cookieKey]
+}))
+
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api', routes);
+//Routes
+app.use('/', routes);
 
-//FOR AUTHENTICATION CODE SEE /HELPERS/AUTH/Auth.js - you can copy and paste it in here: 
+
+
 
 app.get('/', ( req, res ) =>{
-  console.log('GET request on landing page has been made');
   res.json('Smoke Test');
 });
 
 app.get('*', ( req, res ) => {
-  console.log('GET request on landing page has been made on * url');
-  res.json('This page does not exist, change code to redirect on the request to your preffered landing page');
+  res.json('This page does not exist, 404 not found');
 });
 
 const server = app.listen(PORT,() => {
-  //db.sequelize.sync( { force: true } ); //this is to link with your DB defined in the config file - set to true to overwrite, set to false to not overwrite: 
-  console.log(`You entered the Matrix on PORT: ${PORT}`);
+  //db.sequelize.sync( { force: false } ); //this is to link with your DB defined in the config file - set to true to overwrite, set to false to not overwrite:
+  console.log(`Server connected on PORT: ${PORT}`);
 });
-
-
-
-
-
-
-
-
-
