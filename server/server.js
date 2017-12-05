@@ -41,20 +41,12 @@ app.get('/auth/facebook',
   passport.authenticate('facebook',{scope: ['email']}));
 
 app.get('/auth/facebook/callback',
-    passport.authenticate('facebook',  { successRedirect: '/profile',failureRedirect : '/failed'}),
-    
-    // on succes
+    passport.authenticate('facebook',  { successRedirect: '/profile' ,failureRedirect : '/failed'}),
     function(req,res) {
-        // return the token or you would wish otherwise give eg. a succes message
         console.log('i got here which means success')
         res.json('sucess');
     },
-    
-    // on error; likely to be something FacebookTokenError token invalid or already used token,
-    // these errors occur when the user logs in twice with the same token
     function(err,req,res,next) {
-        // You could put your own behavior in here, fx: you could force auth again...
-        // res.redirect('/auth/facebook/');
         if(err) {
             res.json('error', 'something went wrong - line 59 - user already exists');
         }
