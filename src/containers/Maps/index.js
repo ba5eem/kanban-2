@@ -57,6 +57,8 @@ class Map extends Component {
             loadingElement={loadingElement}
             containerElement={containerElement}
             mapElement={mapElement}
+            lat={this.state.lat}
+            lng={this.state.lng}
             />
           <ReactGoogleMaps 
             lat={this.state.lat} 

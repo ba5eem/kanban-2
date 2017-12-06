@@ -25,11 +25,11 @@ const MapWithAnOverlayView = compose(
   withGoogleMap
 )(props =>
   <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    defaultZoom={15}
+    defaultCenter={{lat:props.lat, lng: props.lng}}
   >
     <OverlayView
-      position={{ lat: -34.397, lng: 150.644 }}
+      position={{lat:props.lat, lng: props.lng}}
       /*
        * An alternative to specifying position is specifying bounds.
        * bounds can either be an instance of google.maps.LatLngBounds
@@ -54,13 +54,18 @@ const MapWithAnOverlayView = compose(
        * 3. Create OverlayView content using standard React components.
        */
     >
-      <div style={{ background: `white`, border: `1px solid #ccc`, padding: 15 }}>
-        <h1>OverlayView</h1>
-        <button onClick={props.onClick} style={{ height: 60 }}>
-          I have been clicked {props.count} time{props.count > 1 ? `s` : ``}
-        </button>
+      <div style={overlayStyle}>
+        
       </div>
     </OverlayView>
   </GoogleMap>
 );
+const overlayStyle = {
+  background: 'transparent',
+  border: "20px solid black",
+  padding: 15,
+  marginBottom: 20,
+  width: 800,
+  height: 400
+}
 export default MapWithAnOverlayView;
