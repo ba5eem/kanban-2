@@ -1,49 +1,84 @@
-import _ from "lodash";
-import React from "react";
-import { compose, withProps } from "recompose";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  StreetViewPanorama,
-  OverlayView
-} from "react-google-maps";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import FindArtButtons from './components/FindArtButtons.js';
+import ReactGoogleMaps from './components/Maps';
+import StreetView from './components/StreetView';
+import MapWithAnOverlayView from './components/Overlay.js';
+
+const kakaako_lat = 21.296594;
+const kakaako_lng = -157.855613;
 
 
-const key = "AIzaSyBBTA30AK8U7dJYaDZg2KvhaA-YaQvrhvs";
-const mapUrl =`https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`;
-const loadingElement = <div style={{ height: `100%` }} />;
-const containerElement = <div style={{ height: `400px`, width: `800px` }} />;
-const mapElement = <div style={{ height: `100%` }} />;
-const defaultCenter = { lat: 21.296594, lng: -157.855613 };
+class Map extends Component {
+  constructor() {
+    super();
+    
+    this.state={ 
+      lat: kakaako_lat,
+      lng: kakaako_lng
+    }
+  }
+/*THIS WILL INVOKED LOADTASKS AND BRING THE DATA TO THIS SMART COMPONENT*/
+  componentDidMount() { 
+    // this.props.loadData();
+    // without DB setup this will fail - after DB - uncomment above line
+  }
+/*NOTHING ABOVE NEEDS TO CHANGE*/
+
+
+  onMarkerClick(){
+    console.log('i got clicked');
+  }
+  PichiAvo(){
+    let PichiAvo_lat = 21.2968616;
+    let PichiAvo_lng = -157.8607177;
+    this.setState({
+      lat: PichiAvo_lat, 
+      lng: PichiAvo_lng
+    })
+  }
 
 
 
 
 
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL:mapUrl,
-    loadingElement: loadingElement,
-    containerElement: containerElement,
-    mapElement: mapElement
-  }),
-  withScriptjs,
-  withGoogleMap
-)(props => (
-  <GoogleMap defaultZoom={15} defaultCenter={defaultCenter}>
-    <Marker 
-      position={{ lat: props.lat, lng: props.lng }} 
-      onClick={props.onMarkerClick}/>
-  </GoogleMap>
-));
+  render(){
+      const key = "AIzaSyBBTA30AK8U7dJYaDZg2KvhaA-YaQvrhvs";
+      const mapUrl =`https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`;
+      const loadingElement = <div style={{ height: `100%` }} />;
+      const containerElement = <div style={{ height: `400px`, width: `800px` }} />;
+      const mapElement = <div style={{ height: `100%` }} />;
+      const defaultCenter = { lat: 21.296594, lng: -157.855613 };
+    return (
+      /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
+        <div className="App">
+          <MapWithAnOverlayView
+            googleMapURL={mapUrl}
+            loadingElement={loadingElement}
+            containerElement={containerElement}
+            mapElement={mapElement}
+            />
+          <ReactGoogleMaps 
+            lat={this.state.lat} 
+            lng={this.state.lng}
+            onMarkerClick={this.onMarkerClick.bind(this)} />
+          <FindArtButtons
+            PichiAvo={this.PichiAvo.bind(this)} />
+          <StreetView
+            lat={this.state.lat}
+            lng={this.state.lng} />
 
-const enhance = _.identity;
+          
+        </div>
+      /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
+    );/*END OF RETURN*/
+  }
+} /*END OF RENDER AND CLASS APP*/
 
-const ReactGoogleMaps = ({lat, lng,onMarkerClick}) => [
-  
-  <MyMapComponent key="map" lat={lat} lng={lng} onMarkerClick={onMarkerClick} />
-];
 
-export default enhance(ReactGoogleMaps);
+
+const ConnectedMap = connect(
+  null
+)(Map)
+
+export default ConnectedMap;
