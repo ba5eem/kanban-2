@@ -4,6 +4,8 @@ import FindArtButtons from './components/FindArtButtons.js';
 import ReactGoogleMaps from './components/Maps';
 import StreetView from './components/StreetView';
 import MapWithAnOverlayView from './components/Overlay.js';
+import MapWithGroundOverlay from './components/GroundOverLay';
+import MapWithADrawingManager from './components/DrawingManager'
 
 const kakaako_lat = 21.296594;
 const kakaako_lng = -157.855613;
@@ -52,7 +54,17 @@ class Map extends Component {
     return (
       /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
         <div className="App">
-          <MapWithAnOverlayView
+        <MapWithADrawingManager lat={this.state.lat}
+            lng={this.state.lng}/>
+        {/*  <MapWithGroundOverlay
+            googleMapURL={mapUrl}
+            loadingElement={loadingElement}
+            containerElement={containerElement}
+            mapElement={mapElement}
+            lat={this.state.lat}
+            lng={this.state.lng}
+            />*/}
+          {/*<MapWithAnOverlayView
             googleMapURL={mapUrl}
             loadingElement={loadingElement}
             containerElement={containerElement}
@@ -68,7 +80,7 @@ class Map extends Component {
             PichiAvo={this.PichiAvo.bind(this)} />
           <StreetView
             lat={this.state.lat}
-            lng={this.state.lng} />
+            lng={this.state.lng} />*/}
 
           
         </div>
