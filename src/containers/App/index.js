@@ -5,6 +5,7 @@ import AppHeader from '../../components/AppHeader.js';
 import edit from '../../lib/Edit';
 import destroyData from '../../lib/Delete';
 import addNew from '../../lib/Add';
+import ReactGoogleMaps from '../Maps';
 
 class App extends Component {
   constructor() {
@@ -48,6 +49,7 @@ class App extends Component {
         <div className="App">
           <AppHeader
             data = {this.props.data}/>
+          <ReactGoogleMaps />
         </div>
       /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
     );/*END OF RETURN*/
