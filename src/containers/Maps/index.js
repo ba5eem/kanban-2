@@ -8,7 +8,7 @@ import {
   Marker
 } from "react-google-maps";
 
-const key = "s";
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL:
@@ -21,15 +21,15 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={15} defaultCenter={{ lat: 21.296594, lng: -157.855613 }}>
-    <Marker position={{ lat: 21.296594, lng: -157.855613 }} />
+    <Marker position={{ lat: props.lat, lng: props.lng }} />
   </GoogleMap>
 ));
 
 const enhance = _.identity;
 
-const ReactGoogleMaps = () => [
+const ReactGoogleMaps = ({lat, lng}) => [
   
-  <MyMapComponent key="map" />
+  <MyMapComponent key="map" lat={lat} lng={lng} />
 ];
 
 export default enhance(ReactGoogleMaps);
