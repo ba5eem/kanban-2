@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppHeader from '../../components/AppHeader.js';
+import FindArtButtons from './FindArtButtons.js';
 import ReactGoogleMaps from '../Maps';
+
 
 class App extends Component {
   constructor() {
@@ -23,6 +24,15 @@ class App extends Component {
   onMarkerClick(){
     console.log('i got clicked');
   }
+  PichiAvo(){
+    let PichiAvo_lat = 21.2968616;
+    let PichiAvo_lng = -157.8607178;
+    this.setState({
+      lat: PichiAvo_lat, 
+      lng: PichiAvo_lng
+    })
+  }
+
 
 
 
@@ -31,12 +41,12 @@ class App extends Component {
     return (
       /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
         <div className="App">
-          <AppHeader
-            data = {this.props.data}/>
           <ReactGoogleMaps 
             lat={this.state.lat} 
             lng={this.state.lng}
             onMarkerClick={this.onMarkerClick.bind(this)} />
+          <FindArtButtons
+            PichiAvo={this.PichiAvo.bind(this)} />
         </div>
       /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
     );/*END OF RETURN*/

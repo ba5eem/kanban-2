@@ -16,7 +16,6 @@ const mapElement = <div style={{ height: `100%` }} />;
 const defaultCenter = { lat: 21.296594, lng: -157.855613 };
 
 
-
 const MyMapComponent = compose(
   withProps({
     googleMapURL:mapUrl,
