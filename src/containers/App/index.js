@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadData,addData,editData,deleteData } from '../../actions';
 import AppHeader from '../../components/AppHeader.js';
-import edit from '../../lib/Edit';
-import destroyData from '../../lib/Delete';
-import addNew from '../../lib/Add';
 import ReactGoogleMaps from '../Maps';
 
 class App extends Component {
@@ -23,23 +19,10 @@ class App extends Component {
   }
 /*NOTHING ABOVE NEEDS TO CHANGE*/
 
-  add(id,e){
-    let data = addNew(id,e);
-    console.log(data);
-    this.props.addNew(data);
+
+  onMarkerClick(){
+    console.log('i got clicked');
   }
-
-  update(id,e){
-    let data = edit(id,e);
-    this.props.editTask(data);
-  }
-
-  destroy(id,e){
-    let data = destroyData(id,e);
-    this.props.deleteData(data);
-  }
-
-
 
 
 
@@ -50,25 +33,20 @@ class App extends Component {
         <div className="App">
           <AppHeader
             data = {this.props.data}/>
-          <ReactGoogleMaps lat={this.state.lat} lng={this.state.lng} />
+          <ReactGoogleMaps 
+            lat={this.state.lat} 
+            lng={this.state.lng}
+            onMarkerClick={this.onMarkerClick.bind(this)} />
         </div>
       /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
     );/*END OF RETURN*/
   }
 } /*END OF RENDER AND CLASS APP*/
 
-const mapStateToProps = (state) => {
-  return {
-    data: state.dataList
-  }
-}
+
 
 const ConnectedApp = connect(
-  mapStateToProps,
-  {loadData,
-  addData,
-  editData,
-  deleteData}
+  null
 )(App)
 
 export default ConnectedApp;

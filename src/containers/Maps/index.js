@@ -8,28 +8,37 @@ import {
   Marker
 } from "react-google-maps";
 
+const key = "AIzaSyBBTA30AK8U7dJYaDZg2KvhaA-YaQvrhvs";
+const mapUrl =`https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`;
+const loadingElement = <div style={{ height: `100%` }} />;
+const containerElement = <div style={{ height: `400px`, width: `800px` }} />;
+const mapElement = <div style={{ height: `100%` }} />;
+const defaultCenter = { lat: 21.296594, lng: -157.855613 };
+
+
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL:
-      `https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`,
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px`, width: `800px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
+    googleMapURL:mapUrl,
+    loadingElement: loadingElement,
+    containerElement: containerElement,
+    mapElement: mapElement
   }),
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={15} defaultCenter={{ lat: 21.296594, lng: -157.855613 }}>
-    <Marker position={{ lat: props.lat, lng: props.lng }} />
+  <GoogleMap defaultZoom={15} defaultCenter={defaultCenter}>
+    <Marker 
+      position={{ lat: props.lat, lng: props.lng }} 
+      onClick={props.onMarkerClick}/>
   </GoogleMap>
 ));
 
 const enhance = _.identity;
 
-const ReactGoogleMaps = ({lat, lng}) => [
+const ReactGoogleMaps = ({lat, lng,onMarkerClick}) => [
   
-  <MyMapComponent key="map" lat={lat} lng={lng} />
+  <MyMapComponent key="map" lat={lat} lng={lng} onMarkerClick={onMarkerClick} />
 ];
 
 export default enhance(ReactGoogleMaps);
