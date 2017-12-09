@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
+import {data,filter} from './data';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state={
-      ready:['first card','second card','third card'],
-      progress:['first progress card'],
-      done:['first done card'],
+      ready:filter(data,'status','ready'),
+      progress:filter(data,'status','progress'),
+      done:filter(data,'status','done'),
       undo:[]
     }
     this.eachCard=this.eachCard.bind(this);
@@ -21,16 +23,40 @@ class App extends Component {
     this.setState({ready: arr})
   }
 
-  removeCard(i){
-    let arr = this.state.ready;
-    arr.splice(i,1);
-    this.setState({ready: arr})
+  removeCard(i,status){
+    if(status === 'ready'){
+      let arr = this.state.ready;
+      arr.splice(i,1);
+      this.setState({ready: arr})
+    }
+    if(status === 'progress'){
+      let arr = this.state.progress;
+      arr.splice(i,1);
+      this.setState({progress: arr})
+    }
+    if(status === 'done'){
+      let arr = this.state.done;
+      arr.splice(i,1);
+      this.setState({done: arr})
+    }   
   }
 
-  updateCard(newText,i){
-    let arr = this.state.ready;
-    arr[i] = newText;
-    this.setState({ready: arr});
+  updateCard(newText,i,status){
+    if(status === 'ready'){
+      let arr = this.state.ready;
+      arr[i].title = newText;
+      this.setState({ready: arr})
+    }
+    if(status === 'progress'){
+      let arr = this.state.progress;
+      arr[i].title = newText;
+      this.setState({progress: arr})
+    }
+    if(status === 'done'){
+      let arr = this.state.done;
+      arr[i].title = newText;
+      this.setState({done: arr})
+    }   
   }
 
   eachCard(text,i){
@@ -38,8 +64,9 @@ class App extends Component {
               update={this.updateCard.bind(this)}
               remove={this.removeCard.bind(this)}
               add={this.addCard.bind(this)}
-              key={i} 
-              index={i}>{text}</Card>)
+              key={i}
+              text={text} 
+              index={i}></Card>)
   }
 
 
