@@ -49,7 +49,9 @@ class App extends Component {
   render(){
     return(
       <div className="app-container">
-      <TopMenu user={this.state.currentUser} />
+      <TopMenu 
+        user={this.state.currentUser}
+        addCard={this.addCard} />
       <SideMenu />
         <div className="board-container">
         
