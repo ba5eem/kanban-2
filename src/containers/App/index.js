@@ -7,12 +7,18 @@ class App extends Component {
     super(props);
 
     this.state={
-      queue:['first card','i like bacon', 'boom goes that']
+      queue:[]
     }
   }
 
+  addComment(text){
+    let arr = this.state.queue;
+    arr.push(text);
+    this.setState({queue: arr})
+  }
+
   removeComment(i){
-    var arr = this.state.queue;
+    let arr = this.state.queue;
     arr.splice(i,1);
     this.setState({queue: arr})
   }
@@ -27,11 +33,13 @@ class App extends Component {
   render(){
     return(
       <div className="board">
+        <button onClick={this.addComment.bind(this,'new entry')}className="add-card">Add New</button>
         {this.state.queue.map((text,i)=>{
           return(
             <Comment 
               update={this.updateComment.bind(this)}
               remove={this.removeComment.bind(this)}
+              add={this.addComment.bind(this)}
               key={i} 
               index={i}>{text}</Comment>
             )
