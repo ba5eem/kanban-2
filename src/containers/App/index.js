@@ -14,7 +14,8 @@ class App extends Component {
       ready:filter(data,'status','ready'),
       progress:filter(data,'status','progress'),
       done:filter(data,'status','done'),
-      undo:[]
+      undo:[],
+      currentUser:'baseem'
     }
     this.eachCard=this.eachCard.bind(this);
   }
@@ -48,7 +49,7 @@ class App extends Component {
   render(){
     return(
       <div className="app-container">
-      <TopMenu />
+      <TopMenu user={this.state.currentUser} />
       <SideMenu />
         <div className="board-container">
         
@@ -75,8 +76,7 @@ class App extends Component {
 }
 
 
-//<button onClick={this.addCard.bind(this,'new entry')}
-          //className="add-card">Add New</button>
+
 
 const ConnectedApp = connect(
   null

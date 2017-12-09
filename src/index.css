@@ -28,21 +28,44 @@ body{
 }
 
 .current-user{
-  flex: 0 0 34%;
-  height: 100%;
-  background-color: red;
+  margin-left: 21px;
+  flex: 0 0 30%;
+  padding-top: 15px;
+  color: white;
+  padding-left: 20px;
+  font-size: 20px;
 }
 
 .add-block{
   flex: 0 0 30%;
   height: 100%;
-  background-color: green;
 }
 
+.add-card{
+  max-width: 150px;
+  margin-left: 50px;
+  margin-top: 8px;
+  background-color: #39bae6;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+
 .search-block{
-  flex: 0 0 32%;
+  flex: 0 0 33%;
   height: 100%;
-  background-color: yellow;
+  color: white;
+}
+
+.search-input{
+  width: 200px;
+  height: 20px;
+  padding: 5px;
+  margin: 10px;
+
 }
 
 
@@ -78,6 +101,7 @@ body{
 
 .status-divider{
   border: 1px solid #ffffff;
+  margin-top: 5px;
 }
 
 .ready-container{
