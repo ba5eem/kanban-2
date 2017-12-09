@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
-import {data,filter} from './data';
-
+import {data} from './data';
+import {filter,remove} from './helpers';
 
 class App extends Component {
   constructor(props) {
@@ -24,21 +24,7 @@ class App extends Component {
   }
 
   removeCard(i,status){
-    if(status === 'ready'){
-      let arr = this.state.ready;
-      arr.splice(i,1);
-      this.setState({ready: arr})
-    }
-    if(status === 'progress'){
-      let arr = this.state.progress;
-      arr.splice(i,1);
-      this.setState({progress: arr})
-    }
-    if(status === 'done'){
-      let arr = this.state.done;
-      arr.splice(i,1);
-      this.setState({done: arr})
-    }   
+      this.setState({[status]: remove(this.state[status],i)}) 
   }
 
   updateCard(newText,i,status){
@@ -73,6 +59,7 @@ class App extends Component {
 
 
   render(){
+    console.log(this.state.undo);
     return(
       <div className="board-container">
         <div className="ready-container">  

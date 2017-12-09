@@ -36,11 +36,7 @@ export const data = [
   }
 ];
 
-export function filter(arr,key,query){
-  const res = arr.filter((elem)=>{
-    return elem[key] === query;
-  })
-  return res;
-}
+
+
 
 
