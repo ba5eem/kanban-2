@@ -10,3 +10,10 @@ export function remove(arr,i){
   res.splice(i,1);
   return res;
 }
+
+export function update(arr,i,newText){
+  let res = arr;
+  res[i].title = newText;
+  return res;
+}
+

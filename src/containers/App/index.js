@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
 import {data} from './data';
-import {filter,remove} from './helpers';
+import {filter,remove,update} from './helpers';
 
 class App extends Component {
   constructor(props) {
@@ -28,21 +28,7 @@ class App extends Component {
   }
 
   updateCard(newText,i,status){
-    if(status === 'ready'){
-      let arr = this.state.ready;
-      arr[i].title = newText;
-      this.setState({ready: arr})
-    }
-    if(status === 'progress'){
-      let arr = this.state.progress;
-      arr[i].title = newText;
-      this.setState({progress: arr})
-    }
-    if(status === 'done'){
-      let arr = this.state.done;
-      arr[i].title = newText;
-      this.setState({done: arr})
-    }   
+      this.setState({[status]: update(this.state[status],i,newText)})
   }
 
   eachCard(text,i){
