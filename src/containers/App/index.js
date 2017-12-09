@@ -1,44 +1,40 @@
-\import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from './Header';
-import About from './About';
-
-
-
+import Comment from './comment';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state={
-      className:''
+      queue:['first card','i like bacon', 'boom goes that']
     }
+
   }
 
-  handleScroll(){
-    console.log(document.documentElement.scrollTop);
-    if(document.documentElement.scrollTop > 66){
-        this.setState({
-          className: 'show'
-        })
-    }
+  removeComment(i){
+    var arr = this.state.queue;
+    arr.splice(i,1);
+    this.setState({queue: arr})
   }
 
-  componentDidMount(){
-    window.onscroll = () => this.handleScroll()
+  updateComment(newText,i){
+    let arr = this.state.queue;
+    arr[i] = newText;
+    this.setState({queue: arr});
   }
 
-
-
-
-
+  eachComment(text,i){
+    return (
+        <Comment key={i} index={i}>{text}</Comment>
+      )
+  }
 
 
   render(){
     return(
-      <div>
-        <Header />
-        <About className={this.state.className} />
+      <div className="board">
+        {this.state.queue.map(this.eachComment)}
       </div>
 
 
