@@ -14,7 +14,7 @@ import App from './containers/App';
 import {
   BrowserRouter as Router,
   Route
-} from 'react-router-dom';
+} from 'react-router-dom'
 
 
 

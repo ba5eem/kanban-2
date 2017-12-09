@@ -1,24 +1,33 @@
-import React, { Component } from 'react';
+\import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from './Header';
+import About from './About';
 
-import Maps from '../Maps/';
 
 
 
 class App extends Component {
   constructor() {
     super();
-    
-    this.state={ 
-      data:''
+
+    this.state={
+      className:''
     }
   }
-/*THIS WILL INVOKED LOADTASKS AND BRING THE DATA TO THIS SMART COMPONENT*/
-  componentDidMount() { 
-    // this.props.loadData();
-    // without DB setup this will fail - after DB - uncomment above line
+
+  handleScroll(){
+    console.log(document.documentElement.scrollTop);
+    if(document.documentElement.scrollTop > 66){
+        this.setState({
+          className: 'show'
+        })
+    }
   }
-/*NOTHING ABOVE NEEDS TO CHANGE*/
+
+  componentDidMount(){
+    window.onscroll = () => this.handleScroll()
+  }
+
 
 
 
@@ -26,16 +35,16 @@ class App extends Component {
 
 
   render(){
-    return (
-      /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
-        <div className="App">
-          <Maps/>
-        </div>
-      /*EVERYTHING SHOULD GO BETWEEN THESE DIVS*/
-    );/*END OF RETURN*/
-  }
-} /*END OF RENDER AND CLASS APP*/
+    return(
+      <div>
+        <Header />
+        <About className={this.state.className} />
+      </div>
 
+
+      )
+  }
+}
 
 
 const ConnectedApp = connect(
