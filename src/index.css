@@ -15,8 +15,9 @@ body{
   justify-content: space-around;
 }
 
-.ready-header{
+.ready-header, .progress-header, .done-header{
   text-align: center;
+  color: #ffffff;
 }
 
 .progress-container{
@@ -24,18 +25,14 @@ body{
   justify-content: space-around;
 }
 
-.progress-header{
-  text-align: center;
-}
+
 
 .done-container{
   display: flex-wrap;
   justify-content: space-around;
 }
 
-.done-header{
-  text-align: center;
-}
+
 
 .card-container{
   background-color: #ffffff;
@@ -43,9 +40,23 @@ body{
   margin-top: 10px;
 }
 
+.card-container:hover{
+  background-color: #ffffff;
+  border-radius: 2px;
+  margin-top: 10px;
+  box-shadow: 0 0 5px 2px #73d0ff;
+}
+
+.card-id{
+  font-size: 10px;
+  margin: 4px;
+  padding: 10px;
+}
+
 .card-text{
   margin-bottom: 5px;
   padding: 10px;
+  color: #85888c;
 }
 
 .expedite{
@@ -58,13 +69,11 @@ body{
   margin-right: 80px;
 }
 
-
-
-.github{
+.card-options{
   border: transparent;
 
 }
-.github img{
+.card-options img{
   max-width: 20px;
   max-height: 20px;
 }
@@ -81,16 +90,16 @@ body{
   background-color: #59c2ff;
   border: transparent;
   padding: 10px;
-  color: #ffffff;
+  color: #1a2633;
 }
 
 .button-remove{
   margin: 4px;
   border-radius: 2px;
-  background-color: #ff7733;
   border: transparent;
   padding: 10px;
-  color: #ffffff;
+  color: #1a2633;
+  background-color: #ff7733;
 }
 
 .button-progress{

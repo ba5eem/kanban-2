@@ -31,18 +31,18 @@ class Card extends Component {
     return(
         <div className="card-container">
           <div className="card-text">{this.props.children}</div>
+
           <div className="card-details">
-            <button className="expedite">EXPEDITE</button>
-            <button className="github"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
-            <button className="github"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
-            <button className="github"><img src={user} alt=""/></button>
-            
+            <button className="expedite">priority: low</button>
+            <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
+            <button className="card-options"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
+            <button className="card-options"><img src={user} alt=""/></button>
           </div>
           <div className="card-buttons">
-            <button onClick={this.edit}className="button-edit">Edit</button>
-            <button onClick={this.remove}className="button-remove">Remove</button>
-            <button className="button-progress">In-Progress</button>
-            <button className="button-done">Done</button>
+            <button onClick={this.edit}className="button-edit">edit</button>
+            <button onClick={this.remove}className="button-remove">remove</button>
+            <button className="button-progress">in progress</button>
+            <button className="button-done">done</button>
           </div>
         </div>
       )
