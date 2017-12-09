@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
 import {data} from './data';
-import {filter,remove,update,add} from './helpers';
+import {filter,remove,update,add,undo} from './helpers';
+import TopMenu from './TopMenu';
+import SideMenu from './SideMenu';
 
 class App extends Component {
   constructor(props) {
@@ -22,16 +24,17 @@ class App extends Component {
   }
 
   removeCard(i,status){
-    this.setState({[status]: remove(this.state[status],i)}) 
+    this.setState({undo: undo(this.state[status],i)})
+    this.setState({[status]: remove(this.state[status],i)})   
   }
 
-  updateCard(newText,i,status){
+  updateStatus(newText,i,status){
     this.setState({[status]: update(this.state[status],i,newText)})
   }
 
   eachCard(text,i){
     return(<Card 
-              update={this.updateCard.bind(this)}
+              updateStatus={this.updateStatus.bind(this)}
               remove={this.removeCard.bind(this)}
               add={this.addCard.bind(this)}
               key={i}
@@ -43,20 +46,26 @@ class App extends Component {
 
 
   render(){
-    console.log(this.state.undo);
     return(
-      <div className="board-container">
-        <div className="ready-container">  
-          <h1 className="ready-header">Ready</h1>    
-          {this.state.ready.map(this.eachCard)}
-        </div>
-        <div className="progress-container">
-          <h1 className="progress-header">In-Progress</h1>
-          {this.state.progress.map(this.eachCard)}
-        </div>
-        <div className="done-container">
-          <h1 className="done-header">Done</h1>
-          {this.state.done.map(this.eachCard)}
+      <div className="app-container">
+      <TopMenu />
+      <SideMenu />
+        <div className="board-container">
+        
+          <div className="ready-container">  
+            <h1 className="ready-header">Ready</h1>    
+            {this.state.ready.map(this.eachCard)}
+          </div>
+          <div className="status-divider"></div>
+          <div className="progress-container">
+            <h1 className="progress-header">In-Progress</h1>
+            {this.state.progress.map(this.eachCard)}
+          </div>
+          <div className="status-divider"></div>
+          <div className="done-container">
+            <h1 className="done-header">Done</h1>
+            {this.state.done.map(this.eachCard)}
+          </div>
         </div>
       </div>
 

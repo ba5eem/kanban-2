@@ -24,7 +24,7 @@ class Card extends Component {
   save(){
     let val = this.refs.newText.value;
     let stat = this.refs.newText.id;
-    this.props.update(val,this.props.index,stat)
+    this.props.updateStatus(val,this.props.index,stat)
     this.setState({editing: !this.state.editing})
   }
 

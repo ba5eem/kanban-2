@@ -2,17 +2,58 @@ body{
   background-color: white;
 }
 
+
+.top-menu{
+  width: 1024px;
+  max-height:30px;
+  height: 30px;
+  background-color: #3e4b59;
+  display: flex-wrap;
+  justify-content: space-around;
+  padding: 10px;
+}
+.logo-left{
+  position: absolute;
+  left:8px;
+  top:8px;
+  background-color: #55b4d4;
+  width: 40px;
+  height: 50px;
+}
+
+.logo-left img{
+  height: 50px;
+  max-width: 38px;
+}
+
+.side-menu{
+  position: absolute;
+  left:20;
+  top:58px;
+  z-index: 1;
+  height: 900px;
+  width: 40px;
+  background-color: #343d4a;
+}
+
 .board-container{
-  width: 100%;
+  width: 1004px;
+  min-height: 900px;
   background-color: #66737f;
   display: flex;
   justify-content: space-around;
   padding-bottom: 20px;
+  margin-left: 40px;
+}
+
+.status-divider{
+  border: 1px solid #ffffff;
 }
 
 .ready-container{
   display: flex-wrap;
   justify-content: space-around;
+  min-width: 100px;
 }
 
 .ready-header, .progress-header, .done-header{
@@ -23,6 +64,7 @@ body{
 .progress-container{
   display: flex-wrap;
   justify-content: space-around;
+  min-width: 200px;
 }
 
 
@@ -30,6 +72,7 @@ body{
 .done-container{
   display: flex-wrap;
   justify-content: space-around;
+  min-width: 200px;
 }
 
 
