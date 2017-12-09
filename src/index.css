@@ -2,15 +2,16 @@ body{
   background-color: white;
 }
 
-
+/* TOP-MENU CSS - within top-menu div */
 .top-menu{
   width: 1024px;
-  max-height:30px;
-  height: 30px;
+  max-height:50px;
+  height: 50px;
+  margin-left: 20px;
   background-color: #3e4b59;
-  display: flex-wrap;
-  justify-content: space-around;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
 }
 .logo-left{
   position: absolute;
@@ -25,6 +26,35 @@ body{
   height: 50px;
   max-width: 38px;
 }
+
+.current-user{
+  flex: 0 0 34%;
+  height: 100%;
+  background-color: red;
+}
+
+.add-block{
+  flex: 0 0 30%;
+  height: 100%;
+  background-color: green;
+}
+
+.search-block{
+  flex: 0 0 32%;
+  height: 100%;
+  background-color: yellow;
+}
+
+
+
+
+
+
+
+
+
+
+/* SIDE-MENU CSS */
 
 .side-menu{
   position: absolute;

@@ -7,7 +7,9 @@ export default class TopMenu extends Component {
         <div className="logo-left">
           <img src="http://bit.ly/2jD7klL" alt=""/>
         </div>
-
+        <div className="current-user"></div>
+        <div className="add-block"></div>
+        <div className="search-block"></div>
 
 
       </div>
