@@ -40,11 +40,76 @@ body{
 .card-container{
   background-color: #ffffff;
   border-radius: 2px;
-  padding: 10px;
   margin-top: 10px;
-
 }
 
+.card-text{
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.expedite{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #ffcc66;
+  border: transparent;
+  padding: 10px;
+  color: #ffffff;
+  margin-right: 80px;
+}
+
+
+
+.github{
+  border: transparent;
+
+}
+.github img{
+  max-width: 20px;
+  max-height: 20px;
+}
+
+
+.card-buttons{
+  background-color: #abb0b6;
+  padding: 10px;
+}
+
+.button-edit{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #59c2ff;
+  border: transparent;
+  padding: 10px;
+  color: #ffffff;
+}
+
+.button-remove{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #ff7733;
+  border: transparent;
+  padding: 10px;
+  color: #ffffff;
+}
+
+.button-progress{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #95e6cb;
+  border: transparent;
+  padding: 10px;
+  color: #1a2633;
+}
+
+.button-done{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #d4bfff;
+  border: transparent;
+  padding: 10px;
+  color: #1a2633;
+}
 
 
 

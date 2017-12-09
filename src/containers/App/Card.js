@@ -27,13 +27,23 @@ class Card extends Component {
   }
 
   renderNormal(){
+    const user = "http://bit.ly/2BXP4Lo";//TODO - change to user src via parent
     return(
         <div className="card-container">
           <div className="card-text">{this.props.children}</div>
-          <button onClick={this.edit}className="button-edit">Edit</button>
-          <button onClick={this.remove}className="button-remove">Remove</button>
-          <button className="progress">In-Progress</button>
-          <button className="complete">Done</button>
+          <div className="card-details">
+            <button className="expedite">EXPEDITE</button>
+            <button className="github"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
+            <button className="github"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
+            <button className="github"><img src={user} alt=""/></button>
+            
+          </div>
+          <div className="card-buttons">
+            <button onClick={this.edit}className="button-edit">Edit</button>
+            <button onClick={this.remove}className="button-remove">Remove</button>
+            <button className="button-progress">In-Progress</button>
+            <button className="button-done">Done</button>
+          </div>
         </div>
       )
   }
