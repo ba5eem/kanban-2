@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
 import {data} from './data';
-import {filter,remove,update} from './helpers';
+import {filter,remove,update,add} from './helpers';
 
 class App extends Component {
   constructor(props) {
@@ -17,18 +17,16 @@ class App extends Component {
     this.eachCard=this.eachCard.bind(this);
   }
 
-  addCard(text){
-    let arr = this.state.ready;
-    arr.push(text);
-    this.setState({ready: arr})
+  addCard(card){
+    this.setState({ready: add(this.state.ready,card)})
   }
 
   removeCard(i,status){
-      this.setState({[status]: remove(this.state[status],i)}) 
+    this.setState({[status]: remove(this.state[status],i)}) 
   }
 
   updateCard(newText,i,status){
-      this.setState({[status]: update(this.state[status],i,newText)})
+    this.setState({[status]: update(this.state[status],i,newText)})
   }
 
   eachCard(text,i){

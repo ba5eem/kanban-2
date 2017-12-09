@@ -17,3 +17,9 @@ export function update(arr,i,newText){
   return res;
 }
 
+export function add(arr,card){
+  let res = arr;
+  res.push(card);
+  return res;
+}
+
