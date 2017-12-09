@@ -2,26 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Comment extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state={
       editing: false
     }
     this.edit=this.edit.bind(this);
     this.save=this.save.bind(this);
+    this.remove=this.remove.bind(this);
   }
 
   edit(){
     this.setState({editing: !this.state.editing})
   }
   remove(){
-    console.log('removing comment');
+    this.props.remove(this.props.index);
   }
 
   save(){
     var val = this.refs.newText.value;
-    console.log('new comment', val);
+    this.props.update(val,this.props.index)
+    this.setState({editing: !this.state.editing})
   }
 
   renderNormal(){

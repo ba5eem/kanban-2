@@ -9,7 +9,6 @@ class App extends Component {
     this.state={
       queue:['first card','i like bacon', 'boom goes that']
     }
-
   }
 
   removeComment(i){
@@ -24,17 +23,19 @@ class App extends Component {
     this.setState({queue: arr});
   }
 
-  eachComment(text,i){
-    return (
-        <Comment key={i} index={i}>{text}</Comment>
-      )
-  }
-
 
   render(){
     return(
       <div className="board">
-        {this.state.queue.map(this.eachComment)}
+        {this.state.queue.map((text,i)=>{
+          return(
+            <Comment 
+              update={this.updateComment.bind(this)}
+              remove={this.removeComment.bind(this)}
+              key={i} 
+              index={i}>{text}</Comment>
+            )
+        })}
       </div>
 
 
