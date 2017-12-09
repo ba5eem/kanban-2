@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Comment extends Component {
+class Card extends Component {
   constructor(props) {
     super(props);
 
@@ -28,8 +28,8 @@ class Comment extends Component {
 
   renderNormal(){
     return(
-        <div className="commentContainer">
-          <div className="commentText">{this.props.children}</div>
+        <div className="card-container">
+          <div className="card-text">{this.props.children}</div>
           <button onClick={this.edit}className="button-edit">Edit</button>
           <button onClick={this.remove}className="button-remove">Remove</button>
         </div>
@@ -37,9 +37,9 @@ class Comment extends Component {
   }
   renderForm(){
     return(
-        <div className="commentContainer">
+        <div className="card-container">
           <textarea ref="newText" defaultValue={this.props.children}></textarea>
-          <button onClick={this.save}className="button-save">Save</button>
+          <button onClick={this.save} className="button-save">Save</button>
         </div>
       )
   }
@@ -54,8 +54,8 @@ class Comment extends Component {
 }
 
 
-const ConnectedComment = connect(
+const ConnectedCard = connect(
   null
-)(Comment)
+)(Card)
 
-export default ConnectedComment;
+export default ConnectedCard;

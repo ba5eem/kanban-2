@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Comment from './comment';
+import Card from './Card';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state={
-      queue:[]
+      queue:['first card','second card','third card'],
+      progress:[],
+      completed:[],
+      undo:[]
     }
   }
 
-  addComment(text){
+  addCard(text){
     let arr = this.state.queue;
     arr.push(text);
     this.setState({queue: arr})
   }
 
-  removeComment(i){
+  removeCard(i){
     let arr = this.state.queue;
     arr.splice(i,1);
     this.setState({queue: arr})
   }
 
-  updateComment(newText,i){
+  updateCard(newText,i){
     let arr = this.state.queue;
     arr[i] = newText;
     this.setState({queue: arr});
@@ -33,15 +36,15 @@ class App extends Component {
   render(){
     return(
       <div className="board">
-        <button onClick={this.addComment.bind(this,'new entry')}className="add-card">Add New</button>
+        <button onClick={this.addCard.bind(this,'new entry')}className="add-card">Add New</button>
         {this.state.queue.map((text,i)=>{
           return(
-            <Comment 
-              update={this.updateComment.bind(this)}
-              remove={this.removeComment.bind(this)}
-              add={this.addComment.bind(this)}
+            <Card 
+              update={this.updateCard.bind(this)}
+              remove={this.removeCard.bind(this)}
+              add={this.addCard.bind(this)}
               key={i} 
-              index={i}>{text}</Comment>
+              index={i}>{text}</Card>
             )
         })}
       </div>
