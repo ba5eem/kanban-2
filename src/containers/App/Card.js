@@ -32,6 +32,8 @@ class Card extends Component {
           <div className="card-text">{this.props.children}</div>
           <button onClick={this.edit}className="button-edit">Edit</button>
           <button onClick={this.remove}className="button-remove">Remove</button>
+          <button className="progress">In-Progress</button>
+          <button className="complete">Done</button>
         </div>
       )
   }
