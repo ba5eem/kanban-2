@@ -24,28 +24,8 @@ export function add(state){
   return res;
 }
 
-
-export function status(newArr,prevArr,i,status){
-  let old = prevArr;
-  old[i].status = status;
-  let res = newArr;
-  let x = old.splice(i,1);
-  let y = x.pop();
-  res.push(y);
-  return res;
-}
-
-
-export function checkStatus(info){
-  let status = info.status;
-  if(status === 'ready'){
-    return 'progress'
-  }
-  if(status === "progress"){
-    return 'ready'
-  }
-  if(status === 'done'){
-    return 'progress'
-  }
+export function updateStatus(x,y){
+  console.log(x)
+  console.log(y);
 }
 

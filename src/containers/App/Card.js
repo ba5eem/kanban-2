@@ -24,15 +24,14 @@ class Card extends Component {
   }
 
   save(e,card){
-    let val = this.refs.newText.value;
-    this.props.updateCardTitle(val,card);
+    let {value} = this.refs.newText;
+    this.props.updateCardTitle(value,card);
     this.setState({editing: !this.state.editing})
   }
 
-  status(e){
-    let newStatus = e.target.id;
-    let prevStatus = e.target.value;
-    this.props.changeStatus(newStatus,prevStatus,this.props.index);
+  status(e,card){
+    let {id} = e.target;
+    this.props.updateCardStatus(id,card);
   }
 
   archive(e){
@@ -57,11 +56,11 @@ class Card extends Component {
             <button ref='remove' value={card.status} 
               onClick={(e)=>this.remove(e,card)}className="button-remove">remove</button>
 
-            <button onClick={(e)=>this.status(e)} id={status} value={card.status} className="button-progress">{status}</button>
+            <button onClick={(e)=>this.status(e,card)} id={status} value={card.status} className="button-progress">{status}</button>
             
             {card.status!=='done'?
-            <button onClick={(e)=>this.status(e)} id='done' value={card.status} className="button-done">done</button>
-            :<button onClick={(e)=>this.archive(e)} id='archive' value={card.status} className="button-done">archive</button>
+            <button onClick={(e)=>this.status(e,card)} id='done' value={card.status} className="button-done">done</button>
+            :<button onClick={(e)=>this.archive(e,card)} id='archive' value={card.status} className="button-done">archive</button>
             }
           </div>
         </div>

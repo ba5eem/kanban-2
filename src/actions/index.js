@@ -1,6 +1,8 @@
 export const REMOVE_CARD = 'REMOVE_CARD';
 export const UPDATE_TITLE = "UPDATE_TITLE";
 export const ADD_CARD = "ADD_CARD";
+export const UPDATE_STATUS = "UPDATE_STATUS";
+export const UNDO_REMOVE = "UNDO_REMOVE";
 
 export const removeCard = (card) => {
   return{
@@ -21,6 +23,21 @@ export const addCard = () => {
   let card = {};
   return{
     type: ADD_CARD,
+    payload: card
+  }
+}
+
+export const updateStatus = (newStatus,card) => {
+  card.status = newStatus;
+  return{
+    type: UPDATE_STATUS,
+    payload: card
+  }
+}
+
+export const undoRemove = (card) => {
+  return{
+    type: UNDO_REMOVE,
     payload: card
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {removeCard,updateTitle,addCard} from '../../actions';
+import {removeCard,updateTitle,addCard,updateStatus,undoRemove} from '../../actions';
 import Card from './Card';
 import {filter,archive,status,remove} from './helpers';
 import TopMenu from './TopMenu';
@@ -12,9 +12,6 @@ class App extends Component {
     super(props);
 
     this.state={
-      ready:[],
-      progress:[],
-      done:[],
       undo:[],
       archive:[],
       currentUser:'baseem'
@@ -30,17 +27,16 @@ class App extends Component {
   }
 
   removeCard(card){
-    this.props.removeCard(card);  
+    this.props.removeCard(card); 
+    this.setState({undo: card}) 
   }
 
   updateCardTitle(newText,card){
     this.props.updateTitle(newText,card);
   }
 
-  changeStatus(newStatus,prevStatus,i){
-    this.setState({
-      [newStatus]: status(this.state[newStatus],this.state[prevStatus],i,newStatus)
-    })
+  updateCardStatus(newStatus,card){
+    this.props.updateStatus(newStatus,card);
   }
 
   archive(i,status){
@@ -53,14 +49,8 @@ class App extends Component {
   }
 
   undo(){
-    let elem = this.state.undo;
-    let status = elem.status;
-    let origin = this.state[status]
-    origin.push(elem);
-    this.setState({
-      [status]: origin,
-      undo: []
-    }) 
+    this.props.undoRemove(this.state.undo);
+    this.setState({undo: []})
   }
 
 
@@ -69,7 +59,7 @@ class App extends Component {
     return(<Card 
               updateCardTitle={this.updateCardTitle.bind(this)}
               remove={this.removeCard.bind(this)}
-              changeStatus={this.changeStatus.bind(this)}
+              updateCardStatus={this.updateCardStatus.bind(this)}
               archive={this.archive.bind(this)}
               key={i}
               text={text} 
@@ -136,7 +126,9 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({
     removeCard: removeCard,
     updateTitle: updateTitle,
-    addCard: addCard
+    addCard: addCard,
+    updateStatus: updateStatus,
+    undoRemove: undoRemove
 
 
   },dispatch)
