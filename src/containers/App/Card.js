@@ -73,7 +73,7 @@ class Card extends Component {
     const status = checkStatus(info);
     return(
         <div className="card-container">
-          <textarea ref="newText" id={info.status} className="card-text" defaultValue={info.title}></textarea>
+          <textarea ref="newText" id={info.status} className="card-text-area" defaultValue={info.title}></textarea>
           <div className="card-details">
             <button className="priority" id={info.priority}>priority: {info.priority}</button>
             <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
