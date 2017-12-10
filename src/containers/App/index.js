@@ -91,7 +91,7 @@ class App extends Component {
 
         <SideMenu />
 
-        <div className="board-container">
+        <div className="board-container" >
 
           <div className="ready-container"> 
             {undoActive ? 
