@@ -38,7 +38,6 @@ class App extends Component {
     return(<Card 
               updateStatus={this.updateStatus.bind(this)}
               remove={this.removeCard.bind(this)}
-              add={this.addCard.bind(this)}
               key={i}
               text={text} 
               index={i}></Card>)

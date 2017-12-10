@@ -88,6 +88,9 @@ body{
   background-color: #343d4a;
 }
 
+
+/* BOARD CONTAINER CSS */
+
 .board-container{
   width: 1004px;
   min-height: 900px;
@@ -130,6 +133,8 @@ body{
 
 
 
+/* CARD CONTAINER CSS */
+
 .card-container{
   background-color: #ffffff;
   border-radius: 2px;
@@ -155,7 +160,7 @@ body{
   color: #85888c;
 }
 
-.expedite{
+.priority{
   margin: 4px;
   border-radius: 2px;
   background-color: #ffcc66;
@@ -216,6 +221,40 @@ body{
   padding: 10px;
   color: #1a2633;
 }
+
+#high{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #f28779;
+  border: transparent;
+  padding: 10px;
+  width: 150px;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+#medium{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #ffcc66;
+  border: transparent;
+  padding: 10px;
+  width: 150px;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+#low{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: #bae67e;
+  border: transparent;
+  padding: 10px;
+  width: 150px;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
 
 
 

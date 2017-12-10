@@ -34,7 +34,7 @@ class Card extends Component {
         <div className="card-container">
           <div className="card-text">{info.title}</div>
           <div className="card-details">
-            <button className="expedite">priority: {info.priority}</button>
+            <button className="priority" id={info.priority}>priority: {info.priority}</button>
             <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
             <button className="card-options"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
             <button className="card-options"><img src={info.assigneeImg} alt=""/></button>
@@ -50,11 +50,12 @@ class Card extends Component {
   }
   renderForm(){
     const info = this.props.text;
+    
     return(
         <div className="card-container">
           <textarea ref="newText" id={info.status} className="card-text" defaultValue={info.title}></textarea>
           <div className="card-details">
-            <button className="expedite">priority: {info.priority}</button>
+            <button className="priority" id={info.priority}>priority: {info.priority}</button>
             <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
             <button className="card-options"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
             <button className="card-options"><img src={info.assigneeImg} alt=""/></button>
