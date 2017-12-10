@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {checkStatus} from './helpers';
 
 class Card extends Component {
   constructor(props) {
@@ -29,14 +30,15 @@ class Card extends Component {
     this.setState({editing: !this.state.editing})
   }
 
-  status(){
-    let newStatus = this.refs.status.value;
-    let prevStatus = this.refs.status.id;
-    this.props.changeStatus(newStatus,prevStatus,this.props.index)
+  status(e){
+    let newStatus = e.target.id;
+    let prevStatus = e.target.value;
+    this.props.changeStatus(newStatus,prevStatus,this.props.index);
   }
 
   renderNormal(){
     const info = this.props.text;
+    const status = checkStatus(info);
     return(
         <div className="card-container">
           <div className="card-text">{info.title}</div>
@@ -49,15 +51,20 @@ class Card extends Component {
           <div className="card-buttons">
             <button onClick={this.edit}className="button-edit">edit</button>
             <button ref='remove' value={info.status} onClick={this.remove}className="button-remove">remove</button>
-            <button onClick={this.status} ref="status" id={info.status} value='progress' className="button-progress">in progress</button>
-            <button className="button-done">done</button>
+
+            <button onClick={(e)=>this.status(e)} id={status} value={info.status} className="button-progress">{status}</button>
+            
+            {info.status!=='done'?
+            <button onClick={(e)=>this.status(e)} id='done' value={info.status} className="button-done">done</button>
+            :<button onClick={(e)=>this.archive(e)} id='archive' value={info.status} className="button-done">archive</button>
+            }
           </div>
         </div>
       )
   }
   renderForm(){
     const info = this.props.text;
-    
+    const status = checkStatus(info);
     return(
         <div className="card-container">
           <textarea ref="newText" id={info.status} className="card-text" defaultValue={info.title}></textarea>
@@ -70,7 +77,7 @@ class Card extends Component {
           <div className="card-buttons">
             <button onClick={this.save}className="button-edit">save</button>
             <button onClick={this.remove}className="button-remove">remove</button>
-            <button onClick={this.status} ref="status" id={info.status} className="button-progress">in progress</button>
+            <button ref="status" id={info.status} className="button-progress">in progress</button>
             <button className="button-done">done</button>
           </div>
         </div>

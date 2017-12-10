@@ -45,3 +45,17 @@ export function status(newArr,prevArr,i,status){
   return res;
 }
 
+
+export function checkStatus(info){
+  let status = info.status;
+  if(status === 'ready'){
+    return 'progress'
+  }
+  if(status === "progress"){
+    return 'ready'
+  }
+  if(status === 'done'){
+    return 'progress'
+  }
+}
+

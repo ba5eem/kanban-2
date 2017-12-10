@@ -22,20 +22,30 @@ class App extends Component {
   }
 
   addCard(){
-    this.setState({ready: add(this.state.ready)})
+    this.setState({
+      ready: add(this.state.ready)
+    })
   }
 
   removeCard(i,status){
-    this.setState({undo: undo(this.state[status],i)})
-    this.setState({[status]: remove(this.state[status],i)})   
+    this.setState({
+      undo: undo(this.state[status],i)
+    })
+    this.setState({
+      [status]: remove(this.state[status],i)
+    })   
   }
 
   updateCard(newText,i,status){
-    this.setState({[status]: update(this.state[status],i,newText)})
+    this.setState({
+      [status]: update(this.state[status],i,newText)
+    })
   }
 
   changeStatus(newStatus,prevStatus,i){
-    this.setState({[newStatus]: status(this.state[newStatus],this.state[prevStatus],i,newStatus)})
+    this.setState({
+      [newStatus]: status(this.state[newStatus],this.state[prevStatus],i,newStatus)
+    })
   }
 
 

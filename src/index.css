@@ -109,7 +109,7 @@ body{
 .ready-container{
   display: flex-wrap;
   justify-content: space-around;
-  min-width: 100px;
+  min-width: 200px;
 }
 
 .ready-header, .progress-header, .done-header{
@@ -193,6 +193,7 @@ body{
   border: transparent;
   padding: 10px;
   color: #1a2633;
+  min-width: 50px;
 }
 
 .button-remove{
@@ -202,6 +203,7 @@ body{
   padding: 10px;
   color: #1a2633;
   background-color: #ff7733;
+  min-width: 50px;
 }
 
 .button-progress{
@@ -211,6 +213,7 @@ body{
   border: transparent;
   padding: 10px;
   color: #1a2633;
+  min-width: 65px;
 }
 
 .button-done{
@@ -220,6 +223,7 @@ body{
   border: transparent;
   padding: 10px;
   color: #1a2633;
+  min-width: 50px;
 }
 
 #high{
