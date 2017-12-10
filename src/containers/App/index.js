@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
 import {data} from './data';
-import {filter,remove,update,add,undo} from './helpers';
+import {filter,remove,update,add,undo,status} from './helpers';
 import TopMenu from './TopMenu';
 import SideMenu from './SideMenu';
 
@@ -30,14 +30,20 @@ class App extends Component {
     this.setState({[status]: remove(this.state[status],i)})   
   }
 
-  updateStatus(newText,i,status){
+  updateCard(newText,i,status){
     this.setState({[status]: update(this.state[status],i,newText)})
   }
 
+  changeStatus(newStatus,prevStatus,i){
+    this.setState({[newStatus]: status(this.state[newStatus],this.state[prevStatus],i,newStatus)})
+  }
+
+
   eachCard(text,i){
     return(<Card 
-              updateStatus={this.updateStatus.bind(this)}
+              updateCard={this.updateCard.bind(this)}
               remove={this.removeCard.bind(this)}
+              changeStatus={this.changeStatus.bind(this)}
               key={i}
               text={text} 
               index={i}></Card>)

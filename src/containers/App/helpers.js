@@ -34,3 +34,14 @@ export function add(arr){
   return res;
 }
 
+
+export function status(newArr,prevArr,i,status){
+  let old = prevArr;
+  old[i].status = status;
+  let res = newArr;
+  let x = old.splice(i,1);
+  let y = x.pop();
+  res.push(y);
+  return res;
+}
+
