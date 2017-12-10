@@ -14,7 +14,8 @@ class App extends Component {
     this.state={
       undo:[],
       archive:[],
-      currentUser:'baseem'
+      currentUser:'baseem',
+      drag:[]
     }
     this.eachCard=this.eachCard.bind(this);
     this.addCard=this.addCard.bind(this);
@@ -49,6 +50,13 @@ class App extends Component {
     this.setState({undo: []})
   }
 
+  drag(e,card){
+    this.setState({drag: card})
+  }
+  onDrop(e,card){
+    this.props.updateStatus(card.status,this.state.drag); 
+  }
+
 
 
   eachCard(text,i){
@@ -57,6 +65,8 @@ class App extends Component {
               remove={this.removeCard.bind(this)}
               updateCardStatus={this.updateCardStatus.bind(this)}
               archive={this.archive.bind(this)}
+              drag={this.drag.bind(this)}
+              onDrop={this.onDrop.bind(this)}
               key={i}
               text={text} 
               index={i}>

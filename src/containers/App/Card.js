@@ -15,6 +15,9 @@ class Card extends Component {
     this.remove=this.remove.bind(this);
     this.status=this.status.bind(this);
     this.archive=this.archive.bind(this);
+    this.drag=this.drag.bind(this);
+    this.onDrop=this.onDrop.bind(this);
+    this.onDragOver=this.onDragOver.bind(this);
   }
 
   edit(){
@@ -39,10 +42,24 @@ class Card extends Component {
     this.props.archive(card);
   }
 
+  drag(e,card){
+    this.props.drag(e,card);
+  }
+  onDragOver(e){
+    e.preventDefault();
+  }
+
+  onDrop(e,card){
+    this.props.onDrop(e,card); 
+  }
+
   renderNormal(){
     const card = this.props.text;
     return( <CardDetails
               card={card}
+              drag={this.drag}
+              onDragOver={this.onDragOver}
+              onDrop={this.onDrop}
               remove={this.remove}
               status={this.status}
               archive={this.archive}
@@ -53,7 +70,7 @@ class Card extends Component {
     const card = this.props.text;
     const status = checkStatus(card);
     return(
-      <div className="card-container">
+      <div className="card-container" draggable='true' onDragOver={(e)=>this.onDragOver(e)} onDrag={(e)=>this.drag(e,card)} onDrop={this.drop}>
           <textarea 
             ref="newText" 
             className="card-text-area" 

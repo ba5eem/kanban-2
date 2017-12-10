@@ -88,7 +88,7 @@ export class CardDetails extends Component {
     const {card} = this.props;
     const status = checkStatus(card);
     return (
-        <div className="card-container">
+        <div className="card-container" draggable='true' onDragOver={(e)=>this.props.onDragOver(e)} onDrag={(e)=>this.props.drag(e,card)} onDrop={(e)=>this.props.onDrop(e,card)}>
           <div className="card-text">{card.title}</div>
 
           <div className="card-details">

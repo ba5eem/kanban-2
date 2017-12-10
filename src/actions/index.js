@@ -28,6 +28,7 @@ export const addCard = () => {
 }
 
 export const updateStatus = (newStatus,card) => {
+  console.log(card);
   card.status = newStatus;
   return{
     type: UPDATE_STATUS,
