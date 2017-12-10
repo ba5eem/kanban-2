@@ -13,6 +13,7 @@ class Card extends Component {
     this.save=this.save.bind(this);
     this.remove=this.remove.bind(this);
     this.status=this.status.bind(this);
+    this.archive=this.archive.bind(this);
   }
 
   edit(){
@@ -34,6 +35,11 @@ class Card extends Component {
     let newStatus = e.target.id;
     let prevStatus = e.target.value;
     this.props.changeStatus(newStatus,prevStatus,this.props.index);
+  }
+
+  archive(e){
+    let val = e.target.value;
+    this.props.archive(this.props.index,val);
   }
 
   renderNormal(){
@@ -77,7 +83,7 @@ class Card extends Component {
           <div className="card-buttons">
             <button onClick={this.save}className="button-edit">save</button>
             <button onClick={this.remove}className="button-remove">remove</button>
-            <button ref="status" id={info.status} className="button-progress">in progress</button>
+            <button ref="status" id={info.status} className="button-progress">{status}</button>
             <button className="button-done">done</button>
           </div>
         </div>

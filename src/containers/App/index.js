@@ -15,6 +15,7 @@ class App extends Component {
       progress:filter(data,'status','progress'),
       done:filter(data,'status','done'),
       undo:[],
+      archive:[],
       currentUser:'baseem'
     }
     this.eachCard=this.eachCard.bind(this);
@@ -48,12 +49,23 @@ class App extends Component {
     })
   }
 
+  archive(i,status){
+    this.setState({
+      archive: undo(this.state[status],i)
+    })
+    this.setState({
+      [status]: remove(this.state[status],i)
+    })   
+  }
+
+
 
   eachCard(text,i){
     return(<Card 
               updateCard={this.updateCard.bind(this)}
               remove={this.removeCard.bind(this)}
               changeStatus={this.changeStatus.bind(this)}
+              archive={this.archive.bind(this)}
               key={i}
               text={text} 
               index={i}></Card>)
