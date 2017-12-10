@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import dataList from './dataList.js';
-import tempList from './tempList.js';
+import CardsReducer from './cards-reducer.js';
+
 
 
 export default combineReducers({
-  dataList,
-  tempList
+  cards: CardsReducer
 })

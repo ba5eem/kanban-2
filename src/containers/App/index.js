@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {removeCard,updateTitle,addCard} from '../../actions';
 import Card from './Card';
-import {data} from './data';
-import {filter,remove,update,add,archive,status} from './helpers';
+import {filter,archive,status,remove} from './helpers';
 import TopMenu from './TopMenu';
 import SideMenu from './SideMenu';
 
@@ -11,9 +12,9 @@ class App extends Component {
     super(props);
 
     this.state={
-      ready:filter(data,'status','ready'),
-      progress:filter(data,'status','progress'),
-      done:filter(data,'status','done'),
+      ready:[],
+      progress:[],
+      done:[],
       undo:[],
       archive:[],
       currentUser:'baseem'
@@ -23,26 +24,17 @@ class App extends Component {
     this.undo=this.undo.bind(this);
   }
 
+
   addCard(){
-    this.setState({
-      ready: add(this.state.ready)
-    })
+    this.props.addCard();
   }
 
-  removeCard(i,status){
-    this.setState({
-      undo: archive(this.state[status],i),
-      undoStatus: true
-    })
-    this.setState({
-      [status]: remove(this.state[status],i)
-    })   
+  removeCard(card){
+    this.props.removeCard(card);  
   }
 
-  updateCard(newText,i,status){
-    this.setState({
-      [status]: update(this.state[status],i,newText)
-    })
+  updateCardTitle(newText,card){
+    this.props.updateTitle(newText,card);
   }
 
   changeStatus(newStatus,prevStatus,i){
@@ -75,7 +67,7 @@ class App extends Component {
 
   eachCard(text,i){
     return(<Card 
-              updateCard={this.updateCard.bind(this)}
+              updateCardTitle={this.updateCardTitle.bind(this)}
               remove={this.removeCard.bind(this)}
               changeStatus={this.changeStatus.bind(this)}
               archive={this.archive.bind(this)}
@@ -89,6 +81,10 @@ class App extends Component {
 
   render(){
     const undoActive = this.state.undo.length !== 0 ? true : false;
+    console.log(this.props.cards);
+    const ready = filter(this.props.cards,'status','ready');
+    const progress = filter(this.props.cards,'status','progress');
+    const done = filter(this.props.cards,'status','done');
     return(
       <div className="app-container">
 
@@ -105,21 +101,21 @@ class App extends Component {
             <button onClick={this.undo} className="button-undo">UNDO</button> 
             : null }
             <h1 className="ready-header">Ready</h1>    
-            {this.state.ready.map(this.eachCard)}
+            {ready.map(this.eachCard)}
           </div>
 
           <div className="status-divider"></div>
 
           <div className="progress-container">
             <h1 className="progress-header">In-Progress</h1>
-            {this.state.progress.map(this.eachCard)}
+            {progress.map(this.eachCard)}
           </div>
 
           <div className="status-divider"></div>
 
           <div className="done-container">
             <h1 className="done-header">Done</h1>
-            {this.state.done.map(this.eachCard)}
+            {done.map(this.eachCard)}
           </div>
 
         </div>
@@ -130,11 +126,21 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return{
+    cards: state.cards
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    removeCard: removeCard,
+    updateTitle: updateTitle,
+    addCard: addCard
 
 
+  },dispatch)
+}
 
-const ConnectedApp = connect(
-  null
-)(App)
 
-export default ConnectedApp;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
