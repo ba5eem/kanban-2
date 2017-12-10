@@ -277,6 +277,16 @@ body{
   margin-right: 20px;
 }
 
+#complete{
+  margin: 4px;
+  border-radius: 2px;
+  background-color: gray;
+  border: transparent;
+  padding: 10px;
+  width: 150px;
+  color: #ffffff;
+  margin-right: 20px;
+}
 
 
 

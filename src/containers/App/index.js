@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {removeCard,updateTitle,addCard,updateStatus,undoRemove} from '../../actions';
 import Card from './Card';
-import {filter,archive,status,remove} from './helpers';
+import {filter} from './helpers';
 import TopMenu from './TopMenu';
 import SideMenu from './SideMenu';
 
@@ -39,13 +39,9 @@ class App extends Component {
     this.props.updateStatus(newStatus,card);
   }
 
-  archive(i,status){
-    this.setState({
-      archive: archive(this.state[status],i)
-    })
-    this.setState({
-      [status]: remove(this.state[status],i)
-    })   
+  archive(card){
+    this.props.removeCard(card);
+    this.setState({archive: card })  
   }
 
   undo(){
@@ -71,7 +67,6 @@ class App extends Component {
 
   render(){
     const undoActive = this.state.undo.length !== 0 ? true : false;
-    console.log(this.props.cards);
     const ready = filter(this.props.cards,'status','ready');
     const progress = filter(this.props.cards,'status','progress');
     const done = filter(this.props.cards,'status','done');

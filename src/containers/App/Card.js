@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {checkStatus} from './helpers';
+import {CardDetails} from './CardDetails';
+
 
 class Card extends Component {
   constructor(props) {
@@ -34,41 +35,24 @@ class Card extends Component {
     this.props.updateCardStatus(id,card);
   }
 
-  archive(e){
-    let val = e.target.value;
-    this.props.archive(this.props.index,val);
+  archive(e,card){
+    this.props.archive(card);
   }
 
   renderNormal(){
     const card = this.props.text;
-    const status = checkStatus(card);
-    return(
-        <div className="card-container">
-          <div className="card-text">{card.title}</div>
-          <div className="card-details">
-            <button className="priority" id={card.priority}>priority: {card.priority}</button>
-            <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
-            <button className="card-options"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
-            <button className="card-options"><img src={card.assigneeImg} alt=""/></button>
-          </div>
-          <div className="card-buttons">
-            <button onClick={this.edit}className="button-edit">edit</button>
-            <button ref='remove' value={card.status} 
-              onClick={(e)=>this.remove(e,card)}className="button-remove">remove</button>
-
-            <button onClick={(e)=>this.status(e,card)} id={status} value={card.status} className="button-progress">{status}</button>
-            
-            {card.status!=='done'?
-            <button onClick={(e)=>this.status(e,card)} id='done' value={card.status} className="button-done">done</button>
-            :<button onClick={(e)=>this.archive(e,card)} id='archive' value={card.status} className="button-done">archive</button>
-            }
-          </div>
-        </div>
+    return( <CardDetails
+              card={card}
+              remove={this.remove}
+              save={this.save}
+              status={this.status}
+              archive={this.archive}
+              edit={this.edit}/>  
       )
   }
   renderForm(){
     const card = this.props.text;
-    const status = checkStatus(card);
+    const status = 'holla';
     return(
         <div className="card-container">
           <textarea ref="newText" className="card-text-area" defaultValue={card.title}></textarea>
