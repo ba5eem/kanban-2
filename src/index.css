@@ -226,6 +226,16 @@ body{
   min-width: 50px;
 }
 
+.button-undo{
+  position: absolute;
+  border: transparent;
+  padding: 10px;
+  background-color: #fa6e32;
+  border-radius: 2px;
+  top: 16px;
+  left: 300px;
+}
+
 #high{
   margin: 4px;
   border-radius: 2px;

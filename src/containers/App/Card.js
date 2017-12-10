@@ -83,8 +83,13 @@ class Card extends Component {
           <div className="card-buttons">
             <button onClick={this.save}className="button-edit">save</button>
             <button onClick={this.remove}className="button-remove">remove</button>
-            <button ref="status" id={info.status} className="button-progress">{status}</button>
-            <button className="button-done">done</button>
+            
+            <button onClick={(e)=>this.status(e)} id={status} value={info.status} className="button-progress">{status}</button>
+
+            {info.status!=='done'?
+            <button onClick={(e)=>this.status(e)} id='done' value={info.status} className="button-done">done</button>
+            :<button onClick={(e)=>this.archive(e)} id='archive' value={info.status} className="button-done">archive</button>
+            }
           </div>
         </div>
       )

@@ -11,9 +11,10 @@ export function remove(arr,i){
   return res;
 }
 
-export function undo(arr,i){
+export function archive(arr,i){
   return arr[i];
 }
+
 
 export function update(arr,i,newText){
   let res = arr;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card';
 import {data} from './data';
-import {filter,remove,update,add,undo,status} from './helpers';
+import {filter,remove,update,add,archive,status} from './helpers';
 import TopMenu from './TopMenu';
 import SideMenu from './SideMenu';
 
@@ -20,6 +20,7 @@ class App extends Component {
     }
     this.eachCard=this.eachCard.bind(this);
     this.addCard=this.addCard.bind(this);
+    this.undo=this.undo.bind(this);
   }
 
   addCard(){
@@ -30,7 +31,8 @@ class App extends Component {
 
   removeCard(i,status){
     this.setState({
-      undo: undo(this.state[status],i)
+      undo: archive(this.state[status],i),
+      undoStatus: true
     })
     this.setState({
       [status]: remove(this.state[status],i)
@@ -51,11 +53,22 @@ class App extends Component {
 
   archive(i,status){
     this.setState({
-      archive: undo(this.state[status],i)
+      archive: archive(this.state[status],i)
     })
     this.setState({
       [status]: remove(this.state[status],i)
     })   
+  }
+
+  undo(){
+    let elem = this.state.undo;
+    let status = elem.status;
+    let origin = this.state[status]
+    origin.push(elem);
+    this.setState({
+      [status]: origin,
+      undo: []
+    }) 
   }
 
 
@@ -75,28 +88,40 @@ class App extends Component {
 
 
   render(){
+    const undoActive = this.state.undo.length !== 0 ? true : false;
     return(
       <div className="app-container">
-      <TopMenu 
-        user={this.state.currentUser}
-        addCard={this.addCard} />
-      <SideMenu />
+
+        <TopMenu 
+          user={this.state.currentUser}
+          addCard={this.addCard}/>
+
+        <SideMenu />
+
         <div className="board-container">
-        
-          <div className="ready-container">  
+
+          <div className="ready-container"> 
+            {undoActive ? 
+            <button onClick={this.undo} className="button-undo">UNDO</button> 
+            : null }
             <h1 className="ready-header">Ready</h1>    
             {this.state.ready.map(this.eachCard)}
           </div>
+
           <div className="status-divider"></div>
+
           <div className="progress-container">
             <h1 className="progress-header">In-Progress</h1>
             {this.state.progress.map(this.eachCard)}
           </div>
+
           <div className="status-divider"></div>
+
           <div className="done-container">
             <h1 className="done-header">Done</h1>
             {this.state.done.map(this.eachCard)}
           </div>
+
         </div>
       </div>
 
