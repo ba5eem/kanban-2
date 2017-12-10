@@ -31,7 +31,7 @@ export function add(arr){
     status: 'ready',
     priority: 'low'
   }
-  res.push(card);
+  res.unshift(card);
   return res;
 }
 
