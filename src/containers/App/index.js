@@ -59,7 +59,9 @@ class App extends Component {
               archive={this.archive.bind(this)}
               key={i}
               text={text} 
-              index={i}></Card>)
+              index={i}>
+          </Card>
+          )
   }
 
 

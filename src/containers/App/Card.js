@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {CardDetails} from './CardDetails';
+import {CardDetails,PriorityButton,ProgressButton,GithubOption,CommentOption,UserOption,RemoveButton,DoneButton,ArchiveButton} from './CardDetails';
+import {checkStatus} from './helpers';
 
 
 class Card extends Component {
@@ -44,7 +44,6 @@ class Card extends Component {
     return( <CardDetails
               card={card}
               remove={this.remove}
-              save={this.save}
               status={this.status}
               archive={this.archive}
               edit={this.edit}/>  
@@ -52,28 +51,48 @@ class Card extends Component {
   }
   renderForm(){
     const card = this.props.text;
-    const status = 'holla';
+    const status = checkStatus(card);
     return(
-        <div className="card-container">
-          <textarea ref="newText" className="card-text-area" defaultValue={card.title}></textarea>
+      <div className="card-container">
+          <textarea 
+            ref="newText" 
+            className="card-text-area" 
+            defaultValue={card.title}>
+          </textarea>
           <div className="card-details">
-            <button className="priority" id={card.priority}>priority: {card.priority}</button>
-            <button className="card-options"><img src="http://bit.ly/2BpEJuV" alt=""/></button>
-            <button className="card-options"><img src="http://bit.ly/2kdDrIk" alt=""/></button>
-            <button className="card-options"><img src={card.assigneeImg} alt=""/></button>
+            <PriorityButton card={card} />
+            <GithubOption card={card} />
+            <CommentOption card={card} />
+            <UserOption card={card} />
           </div>
           <div className="card-buttons">
-            <button onClick={(e)=>this.save(e,card)}className="button-edit">save</button>
-            <button onClick={this.remove}className="button-remove">remove</button>
-            
-            <button onClick={(e)=>this.status(e)} id={status} value={card.status} className="button-progress">{status}</button>
-
+            <button 
+              onClick={(e)=>this.save(e,card)}
+              className="button-edit">save
+            </button>
+            <RemoveButton 
+              remove={this.remove} 
+              card={card}>
+            </RemoveButton>
+            <ProgressButton 
+              handler={this.status} 
+              status={status} 
+              card={card}>
+            </ProgressButton>
             {card.status!=='done'?
-            <button onClick={(e)=>this.status(e)} id='done' value={card.status} className="button-done">done</button>
-            :<button onClick={(e)=>this.archive(e)} id='archive' value={card.status} className="button-done">archive</button>
+              <DoneButton 
+                handler={this.status} 
+                card={card}>
+              </DoneButton>
+              
+            : <ArchiveButton 
+                archive={this.archive} 
+                card={card}>
+              </ArchiveButton>
             }
           </div>
         </div>
+
       )
   }
 
@@ -87,8 +106,6 @@ class Card extends Component {
 }
 
 
-const ConnectedCard = connect(
-  null
-)(Card)
 
-export default ConnectedCard;
+
+export default Card;

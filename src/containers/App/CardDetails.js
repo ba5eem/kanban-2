@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {checkStatus} from './helpers';
 
-const PriorityButton = ({card}) => { 
+export const PriorityButton = ({card}) => { 
   return(<button 
             className="priority" 
             id={card.priority}>priority: {card.priority}
@@ -9,7 +9,7 @@ const PriorityButton = ({card}) => {
     )
 }
 
-const GithubOption = ({card}) => {
+export const GithubOption = ({card}) => {
   return (<button 
             className="card-options">
             <img src="http://bit.ly/2BpEJuV" alt=""/>
@@ -17,7 +17,7 @@ const GithubOption = ({card}) => {
           )
 }
 
-const CommentOption = ({card}) => {
+export const CommentOption = ({card}) => {
   return (<button 
             className="card-options">
             <img src="http://bit.ly/2kdDrIk" alt=""/>
@@ -25,7 +25,7 @@ const CommentOption = ({card}) => {
           )
 }
 
-const UserOption = ({card}) => {
+export const UserOption = ({card}) => {
   return(<button 
             className="card-options">
             <img src={card.assigneeImg} alt=""/>
@@ -33,15 +33,15 @@ const UserOption = ({card}) => {
         )
 }
 
-const EditButton = ({edit}) => {
+export const EditButton = ({name,handler,card}) => {
   return (<button 
-            onClick={edit}
-            className="button-edit">edit
+            onClick={(e)=>handler(e,card)}
+            className="button-edit">{name}
           </button>
           )
 }
 
-const RemoveButton = ({remove,card}) => {
+export const RemoveButton = ({remove,card}) => {
   return (<button 
             value={card.status} 
             onClick={(e)=>remove(e,card)}
@@ -50,9 +50,9 @@ const RemoveButton = ({remove,card}) => {
           )
 }
 
-const ProgressButton = ({changeStatus,card,status}) => {
+export const ProgressButton = ({handler,card,status}) => {
   return (<button 
-            onClick={(e)=>changeStatus(e,card)} 
+            onClick={(e)=>handler(e,card)} 
             id={status} 
             value={card.status} 
             className="button-progress">{status}
@@ -60,9 +60,9 @@ const ProgressButton = ({changeStatus,card,status}) => {
           )
 }
 
-const DoneButton = ({card,done,changeStatus}) => {
+export const DoneButton = ({card,done,handler}) => {
   return (<button 
-            onClick={(e)=>changeStatus(e,card)} 
+            onClick={(e)=>handler(e,card)} 
             id='done' 
             value={card.status} 
             className="button-done">done
@@ -70,7 +70,7 @@ const DoneButton = ({card,done,changeStatus}) => {
           )
 }
 
-const ArchiveButton = ({archive,card}) => {
+export const ArchiveButton = ({archive,card}) => {
   return (<button 
             onClick={(e)=>archive(e,card)} 
             id='archive' 
@@ -99,7 +99,7 @@ export class CardDetails extends Component {
           </div>
 
           <div className="card-buttons">
-            <EditButton edit={this.props.edit}/>
+            <EditButton handler={this.props.edit} name='edit'/>
 
             <RemoveButton 
               remove={this.props.remove} 
@@ -107,14 +107,14 @@ export class CardDetails extends Component {
             </RemoveButton>
 
             <ProgressButton 
-              changeStatus={this.props.status} 
+              handler={this.props.status} 
               status={status} 
               card={card}>
             </ProgressButton>
             
             {card.status!=='done'?
               <DoneButton 
-                changeStatus={this.props.status} 
+                handler={this.props.status} 
                 card={card}>
               </DoneButton>
               
@@ -129,3 +129,4 @@ export class CardDetails extends Component {
     );
   }
 }
+
