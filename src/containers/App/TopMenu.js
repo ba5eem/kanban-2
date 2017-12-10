@@ -6,13 +6,13 @@ class TopMenu extends Component {
     super(props);
 
     this.state={
-      adding: false
+      add: true
     }
+    this.add=this.add.bind(this);
   }
 
   add(){
-    this.setState({adding: true})
-    console.log('addme');
+    this.props.addCard();
   }
 
 
@@ -33,7 +33,7 @@ class TopMenu extends Component {
         <div className="add-block">
           <div onClick={this.add} className="add-card">+ Add Card</div>
         </div>
-
+          
         <div className="current-user">board.io/{this.props.user}</div>
 
         

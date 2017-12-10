@@ -21,8 +21,15 @@ export function update(arr,i,newText){
   return res;
 }
 
-export function add(arr,card){
+export function add(arr){
   let res = arr;
+  let card = {
+    title: "add title here",
+    assignee: 'undefined',
+    assigneeImg: "http://bit.ly/2AqnxFj",
+    status: 'ready',
+    priority: 'low'
+  }
   res.push(card);
   return res;
 }

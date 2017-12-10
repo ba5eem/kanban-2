@@ -18,10 +18,11 @@ class App extends Component {
       currentUser:'baseem'
     }
     this.eachCard=this.eachCard.bind(this);
+    this.addCard=this.addCard.bind(this);
   }
 
-  addCard(card){
-    this.setState({ready: add(this.state.ready,card)})
+  addCard(){
+    this.setState({ready: add(this.state.ready)})
   }
 
   removeCard(i,status){
