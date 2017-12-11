@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {checkStatus} from './helpers';
 
 export const PriorityButton = ({card,handler,priority}) => { 
-  const idStyle = card.priority !== 'done' ? card.priority : 'complete'
+  const idStyle = card.priority !== 'done' ? card.priority : 'complete';
   return(<div className="priority-change">
             <div 
               onClick={(e)=>handler(e,card)}

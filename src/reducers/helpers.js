@@ -36,6 +36,9 @@ export function priority(payload,state){
   if(old === 'med'){
     newPriority = 'high';
   } 
+  if(old === 'done'){
+    newPriority = 'done';
+  }
   let res = state.map((elem) => {
     if(elem.id === payload.id){
       elem.priority = newPriority;
