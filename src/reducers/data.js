@@ -21,7 +21,7 @@ export const data = [
     assignee: 'James',
     assigneeImg: "http://bit.ly/2iILsof",
     status: 'done',
-    priority: 'complete'
+    priority: 'done'
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const data = [
     assignee: 'Michelle',
     assigneeImg: "http://bit.ly/2yU5pS0",
     status: 'ready',
-    priority: 'medium'
+    priority: 'med'
   },
   {
     id: 4,

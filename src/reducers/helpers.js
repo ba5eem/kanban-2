@@ -24,8 +24,24 @@ export function add(state){
   return res;
 }
 
-export function updateStatus(x,y){
-  console.log(x)
-  console.log(y);
+export function priority(payload,state){
+  let newPriority;
+  let old = payload.priority;
+  if(old === 'high'){
+    newPriority = 'low';
+  }
+  if(old === 'low'){
+    newPriority = 'med';
+  }
+  if(old === 'med'){
+    newPriority = 'high';
+  } 
+  let res = state.map((elem) => {
+    if(elem.id === payload.id){
+      elem.priority = newPriority;
+      return state;
+    }
+  })
+  return state;
 }
 

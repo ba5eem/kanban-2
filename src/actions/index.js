@@ -3,6 +3,7 @@ export const UPDATE_TITLE = "UPDATE_TITLE";
 export const ADD_CARD = "ADD_CARD";
 export const UPDATE_STATUS = "UPDATE_STATUS";
 export const UNDO_REMOVE = "UNDO_REMOVE";
+export const UPDATE_PRIORITY = "UPDATE_PRIORITY";
 
 export const removeCard = (card) => {
   return{
@@ -28,10 +29,17 @@ export const addCard = () => {
 }
 
 export const updateStatus = (newStatus,card) => {
-  console.log(card);
+  
   card.status = newStatus;
   return{
     type: UPDATE_STATUS,
+    payload: card
+  }
+}
+
+export const updatePriority = (card) => {
+  return{
+    type: UPDATE_PRIORITY,
     payload: card
   }
 }

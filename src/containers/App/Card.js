@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {CardDetails,PriorityButton,ProgressButton,GithubOption,CommentOption,UserOption,RemoveButton,DoneButton,ArchiveButton} from './CardDetails';
-import {checkStatus} from './helpers';
+import {checkStatus,styleChange} from './helpers';
+
 
 
 class Card extends Component {
@@ -8,12 +9,14 @@ class Card extends Component {
     super(props);
 
     this.state={
-      editing: false
+      editing: false,
+      style: undefined
     }
     this.edit=this.edit.bind(this);
     this.save=this.save.bind(this);
     this.remove=this.remove.bind(this);
     this.status=this.status.bind(this);
+    this.priority=this.priority.bind(this);
     this.archive=this.archive.bind(this);
     this.drag=this.drag.bind(this);
     this.onDrop=this.onDrop.bind(this);
@@ -34,8 +37,14 @@ class Card extends Component {
   }
 
   status(e,card){
-    let {id} = e.target;
-    this.props.updateCardStatus(id,card);
+    let status = e.target.id;
+    this.props.updateCardStatus(status,card);
+  }
+
+  priority(e,card){
+    let priority = e.target.id
+    this.setState({style: styleChange(priority)})
+    this.props.updateCardPriority(card);
   }
 
   archive(e,card){
@@ -62,6 +71,8 @@ class Card extends Component {
               onDrop={this.onDrop}
               remove={this.remove}
               status={this.status}
+              priority={this.priority}
+              style={this.state.style}
               archive={this.archive}
               edit={this.edit}/>  
       )

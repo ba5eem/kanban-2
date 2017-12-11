@@ -1,6 +1,13 @@
-import {REMOVE_CARD,UPDATE_TITLE,ADD_CARD,UPDATE_STATUS,UNDO_REMOVE} from '../actions'
+import {
+  REMOVE_CARD,
+  UPDATE_TITLE,
+  ADD_CARD,
+  UPDATE_STATUS,
+  UNDO_REMOVE,
+  UPDATE_PRIORITY
+  } from '../actions'
 import {data} from './data';
-import {remove,add,updateStatus} from './helpers';
+import {remove,add,priority} from './helpers';
 
 export default function(state=data, action){
   switch(action.type){
@@ -12,6 +19,8 @@ export default function(state=data, action){
       return state;
     case UPDATE_STATUS:
       return [...state];
+    case UPDATE_PRIORITY:
+      return [...priority(action.payload,state)];
     case ADD_CARD:
       return [...add(state)];
     default:

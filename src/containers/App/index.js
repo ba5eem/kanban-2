@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {removeCard,updateTitle,addCard,updateStatus,undoRemove} from '../../actions';
+import {removeCard,updateTitle,addCard,updateStatus,undoRemove,updatePriority} from '../../actions';
 import Card from './Card';
 import {filter} from './helpers';
 import TopMenu from './TopMenu';
@@ -40,6 +40,10 @@ class App extends Component {
     this.props.updateStatus(newStatus,card);
   }
 
+  updateCardPriority(card){
+    this.props.updatePriority(card)
+  }
+
   archive(card){
     this.props.removeCard(card);
     this.setState({archive: card })  
@@ -64,6 +68,7 @@ class App extends Component {
               updateCardTitle={this.updateCardTitle.bind(this)}
               remove={this.removeCard.bind(this)}
               updateCardStatus={this.updateCardStatus.bind(this)}
+              updateCardPriority={this.updateCardPriority.bind(this)}
               archive={this.archive.bind(this)}
               drag={this.drag.bind(this)}
               onDrop={this.onDrop.bind(this)}
@@ -135,7 +140,8 @@ function mapDispatchToProps(dispatch){
     updateTitle: updateTitle,
     addCard: addCard,
     updateStatus: updateStatus,
-    undoRemove: undoRemove
+    undoRemove: undoRemove,
+    updatePriority: updatePriority
 
 
   },dispatch)

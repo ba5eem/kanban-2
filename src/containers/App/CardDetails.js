@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {checkStatus} from './helpers';
 
-export const PriorityButton = ({card}) => { 
-  return(<button 
-            className="priority" 
-            id={card.priority}>priority: {card.priority}
-          </button>
+export const PriorityButton = ({card,handler,priority}) => { 
+  const idStyle = card.priority !== 'done' ? card.priority : 'complete'
+  return(<div className="priority-change">
+            <div 
+              onClick={(e)=>handler(e,card)}
+              className="priority" 
+              style={priority}
+              id={idStyle}>{card.priority}
+            </div>
+          </div>
     )
 }
 
@@ -92,7 +97,7 @@ export class CardDetails extends Component {
           <div className="card-text">{card.title}</div>
 
           <div className="card-details">
-            <PriorityButton card={card} />
+            <PriorityButton  handler={this.props.priority} priority={this.props.style} card={card} />
             <GithubOption card={card} />
             <CommentOption card={card} />
             <UserOption card={card} />
