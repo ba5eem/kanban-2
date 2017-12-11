@@ -7,6 +7,7 @@ import {filter} from './helpers';
 import TopMenu from './TopMenu';
 import SideMenu from './SideMenu';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -95,13 +96,12 @@ class App extends Component {
     const done = filter(this.props.cards,'status','done');
     return(
       <div className="app-container">
-
         <TopMenu 
           user={this.state.currentUser}
           changeView={this.changeView.bind(this)}
           addCard={this.addCard}/>
 
-        <SideMenu />
+        <SideMenu cards={this.props.cards} />
 
         <div className="board-container" >
 

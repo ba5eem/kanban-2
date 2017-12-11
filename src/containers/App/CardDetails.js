@@ -46,13 +46,20 @@ export const EditButton = ({name,handler,card}) => {
           )
 }
 
-export const RemoveButton = ({remove,card}) => {
+export const RemoveButton = ({remove,card,view}) => {
+  if(view){
   return (<button 
             value={card.status} 
             onClick={(e)=>remove(e,card)}
             className="button-remove">remove
           </button>
           )
+  }else{ return (<button 
+            value={card.status} 
+            className="button-remove">review
+          </button>
+          )
+  }
 }
 
 export const ProgressButton = ({handler,card,status}) => {
@@ -106,12 +113,13 @@ export class CardDetails extends Component {
 
           <div className="card-buttons">
             <EditButton handler={this.props.edit} name='edit'/>
-            {view ?
+
             <RemoveButton 
-              remove={this.props.remove} 
+              remove={this.props.remove}
+              view={view} 
               card={card}>
             </RemoveButton>
-            : null }
+
 
             <ProgressButton 
               handler={this.props.status} 

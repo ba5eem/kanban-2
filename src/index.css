@@ -183,6 +183,25 @@ input:checked + .slider:before {
   filter: invert(100%);
   -webkit-filter: invert(100%); /* Safari/Chrome */
 }
+.side-menu-popup{
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-images{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.account-prefs{
+  border-radius: 3px;
+  background-color: #d4bfff;
+  color: black;
+}
+
+.analytics-images{
+  width: 300px;
+}
 
 .side-menu-users-about img{
   margin: 3px;
@@ -325,44 +344,33 @@ input:checked + .slider:before {
   padding: 10px;
 }
 
-.button-edit{
+.button-edit, .button-remove, .button-progress, .button-done{
   margin: 4px;
   border-radius: 2px;
   background-color: #59c2ff;
   border: transparent;
   padding: 10px;
   color: #1a2633;
-  min-width: 50px;
+  width: 55px;
+  text-align: center;
 }
 
 .button-remove{
-  margin: 4px;
-  border-radius: 2px;
-  border: transparent;
-  padding: 10px;
-  color: #1a2633;
   background-color: #ff7733;
-  min-width: 50px;
+  padding-left: 7px;
 }
 
 .button-progress{
-  margin: 4px;
-  border-radius: 2px;
   background-color: #95e6cb;
-  border: transparent;
-  padding: 10px;
-  color: #1a2633;
-  min-width: 65px;
+  padding-left: 4px;
 }
 
 .button-done{
-  margin: 4px;
-  border-radius: 2px;
   background-color: #d4bfff;
-  border: transparent;
-  padding: 10px;
-  color: #1a2633;
-  min-width: 50px;
+  padding-left: 8px;
+}
+#ready{
+  padding-left: 10px;
 }
 
 .button-undo{
@@ -408,6 +416,8 @@ input:checked + .slider:before {
   padding: 8px;
   border-radius: 5px;
 }
+
+
 
 
 
