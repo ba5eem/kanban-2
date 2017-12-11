@@ -155,13 +155,6 @@ input:checked + .slider:before {
 }
 
 
-
-
-
-
-
-
-
 /* SIDE-MENU CSS */
 
 .side-menu{
@@ -169,7 +162,8 @@ input:checked + .slider:before {
   left:20;
   top:58px;
   z-index: 1;
-  height: 900px;
+  height: 100%;
+  min-height: 920px;
   width: 40px;
   background-color: #343d4a;
 }
@@ -202,6 +196,7 @@ input:checked + .slider:before {
 .analytics-images{
   width: 300px;
 }
+
 
 .side-menu-users-about img{
   margin: 3px;
@@ -256,32 +251,19 @@ input:checked + .slider:before {
   margin-top: 5px;
 }
 
-.ready-container{
-  display: flex-wrap;
-  justify-content: space-around;
-  min-width: 200px;
-}
+
 
 .ready-header, .progress-header, .done-header{
   text-align: center;
   color: #ffffff;
 }
 
-.progress-container{
+.done-container, .progress-container, .ready-container{
   display: flex-wrap;
   justify-content: space-around;
-  min-width: 200px;
+  max-width: 280px;
+  min-width: 280px;
 }
-
-
-
-.done-container{
-  display: flex-wrap;
-  justify-content: space-around;
-  min-width: 200px;
-}
-
-
 
 /* CARD CONTAINER CSS */
 
@@ -289,13 +271,17 @@ input:checked + .slider:before {
   background-color: #ffffff;
   border-radius: 2px;
   margin-top: 10px;
-}
+  max-width: 280px;
+  min-width: 280px;
+} 
 
 .card-container:hover{
   background-color: #ffffff;
   border-radius: 2px;
   margin-top: 10px;
   box-shadow: 0 0 5px 2px #73d0ff;
+  max-width: 280px;
+  min-width: 280px;
 }
 
 .card-id{
@@ -334,8 +320,8 @@ input:checked + .slider:before {
 
 }
 .card-options img{
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 
@@ -353,6 +339,15 @@ input:checked + .slider:before {
   color: #1a2633;
   width: 55px;
   text-align: center;
+}
+.button-undo{
+  position: absolute;
+  border: transparent;
+  padding: 10px;
+  background-color: #fa6e32;
+  border-radius: 2px;
+  top: 16px;
+  left: 500px;
 }
 
 .button-remove{
@@ -373,15 +368,7 @@ input:checked + .slider:before {
   padding-left: 10px;
 }
 
-.button-undo{
-  position: absolute;
-  border: transparent;
-  padding: 10px;
-  background-color: #fa6e32;
-  border-radius: 2px;
-  top: 16px;
-  left: 300px;
-}
+
 
 #high{
   background-color: #f28779;
@@ -415,6 +402,81 @@ input:checked + .slider:before {
   border: 2px solid gray;
   padding: 8px;
   border-radius: 5px;
+}
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+.card-options{
+  background-color: transparent;
+}
+.side-menu-users img{visibility: hidden;}
+.side-menu-users-about{visibility: hidden;}
+.toggle-block{visibility: hidden;}
+.search-block{visibility: hidden;}
+
+.side-menu-users-mobile{
+  display: flex-wrap;
+  max-width: 40px;
+  background-color: transparent;
+  z-index: 1000;
+  position: absolute;
+  filter: invert(100%);
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+}
+.mobileView-button{
+  margin-top: 30px;
+  max-height: 30px;
+}
+
+#mobile-ready{
+  
+  max-width: 30px;
+  max-height: 30px;
+}
+#mobile-progress{
+  max-width: 30px;
+  max-height: 30px;
+}
+
+#mobile-done{
+  max-width: 25px;
+  max-height: 25px;
+  padding-left: 2px;
+}
+
+
+.add-card{
+  max-height: 20px;
+  font-size: 10px;
+  width: 28px;
+  padding-top: 2px;
+  padding-left: 1px;
+  text-align: right;
+}
+.current-user{
+  font-size: 15px;
+}
+
+.top-menu{
+  max-width: 380px;
+  min-width: 320px;
+}
+
+.board-container{
+  max-width: 380px;
+  min-width: 320px;
+  margin-left: 0px;
+}
+.status-divider{
+  left:0px;
+  position: absolute;
+}
+
 }
 
 

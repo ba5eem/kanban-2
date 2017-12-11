@@ -17,7 +17,9 @@ export const PriorityButton = ({card,handler,priority}) => {
 export const GithubOption = ({card}) => {
   return (<button 
             className="card-options">
-            <img src="http://bit.ly/2BpEJuV" alt=""/>
+            <a href="https://github.com/ba5eem/React-StarterPack/tree/kanban" className="link">
+              <img src="http://bit.ly/2BpEJuV" alt=""/>
+            </a>
           </button>
           )
 }
@@ -25,7 +27,9 @@ export const GithubOption = ({card}) => {
 export const CommentOption = ({card}) => {
   return (<button 
             className="card-options">
-            <img src="http://bit.ly/2kdDrIk" alt=""/>
+            <a href="https://github.com/ba5eem/React-StarterPack/labels/help%20wanted" className="link">
+              <img src="http://bit.ly/2kdDrIk" alt=""/>
+            </a>
           </button>
           )
 }
@@ -33,7 +37,7 @@ export const CommentOption = ({card}) => {
 export const UserOption = ({card}) => {
   return(<button 
             className="card-options">
-            <img src={card.assigneeImg} alt=""/>
+            <img  src={card.assigneeImg} alt=""/>
           </button>
         )
 }
