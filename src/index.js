@@ -3,10 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 /*REDUX*/
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
-import thunk from 'redux-thunk';
 /*CSS*/
 import './index.css';
 /*CONTAINERS*/
