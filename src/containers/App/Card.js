@@ -67,6 +67,7 @@ class Card extends Component {
     return( <CardDetails
               card={card}
               drag={this.drag}
+              view={this.props.view}
               onDragOver={this.onDragOver}
               onDrop={this.onDrop}
               remove={this.remove}

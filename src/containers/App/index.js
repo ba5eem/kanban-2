@@ -15,6 +15,7 @@ class App extends Component {
       undo:[],
       archive:[],
       currentUser:'baseem',
+      view: true,
       drag:[]
     }
     this.eachCard=this.eachCard.bind(this);
@@ -54,6 +55,10 @@ class App extends Component {
     this.setState({undo: []})
   }
 
+  changeView(){
+    this.setState({view: !this.state.view})
+  }
+
   drag(e,card){
     this.setState({drag: card})
   }
@@ -72,6 +77,7 @@ class App extends Component {
               archive={this.archive.bind(this)}
               drag={this.drag.bind(this)}
               onDrop={this.onDrop.bind(this)}
+              view={this.state.view}
               key={i}
               text={text} 
               index={i}>
@@ -92,6 +98,7 @@ class App extends Component {
 
         <TopMenu 
           user={this.state.currentUser}
+          changeView={this.changeView.bind(this)}
           addCard={this.addCard}/>
 
         <SideMenu />

@@ -6,13 +6,20 @@ class TopMenu extends Component {
     super(props);
 
     this.state={
-      add: true
+      add: true,
+      toggle: true
     }
     this.add=this.add.bind(this);
+    this.view=this.view.bind(this);
   }
 
   add(){
     this.props.addCard();
+  }
+
+  view(e){
+    this.setState({toggle: !this.state.toggle})
+    this.props.changeView();
   }
 
 
@@ -23,6 +30,7 @@ class TopMenu extends Component {
   
 
   render(){
+    const {toggle} = this.state;
     return(
       <div className="top-menu">
 
@@ -34,8 +42,15 @@ class TopMenu extends Component {
           <div onClick={this.add} className="add-card">+ Add Card</div>
         </div>
           
-        <div className="current-user">board.io/{this.props.user}</div>
-
+        <div className="current-user">board.io/{toggle ? this.props.user : 'michelle'}</div>
+        <div className="toggle-block">
+            <p className="toggle-admin" onClick={(e)=>this.view(e)}>admin</p>
+          <label className="switch">
+            <input onChange={(e)=>this.view(e)} value={this.state.toggle} type="checkbox"/>
+            <span className="slider round"></span>
+          </label>
+          <p className="toggle-user" onClick={(e)=>this.view(e)}>user</p>
+        </div>
         
 
         <div className="search-block">

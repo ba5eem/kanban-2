@@ -75,12 +75,12 @@ export const DoneButton = ({card,done,handler}) => {
           )
 }
 
-export const ArchiveButton = ({archive,card}) => {
+export const ArchiveButton = ({archive,card,view}) => {
   return (<button 
             onClick={(e)=>archive(e,card)} 
             id='archive' 
             value={card.status} 
-            className="button-done">archive
+            className="button-done">{view ? "archive" : "review" }
           </button>
           )
 }
@@ -92,6 +92,7 @@ export class CardDetails extends Component {
   render() {
     const {card} = this.props;
     const status = checkStatus(card);
+    const {view} = this.props;
     return (
         <div className="card-container" draggable='true' onDragOver={(e)=>this.props.onDragOver(e)} onDrag={(e)=>this.props.drag(e,card)} onDrop={(e)=>this.props.onDrop(e,card)}>
           <div className="card-text">{card.title}</div>
@@ -105,11 +106,12 @@ export class CardDetails extends Component {
 
           <div className="card-buttons">
             <EditButton handler={this.props.edit} name='edit'/>
-
+            {view ?
             <RemoveButton 
               remove={this.props.remove} 
               card={card}>
             </RemoveButton>
+            : null }
 
             <ProgressButton 
               handler={this.props.status} 
@@ -124,6 +126,7 @@ export class CardDetails extends Component {
               </DoneButton>
               
             : <ArchiveButton 
+                view={view}
                 archive={this.props.archive} 
                 card={card}>
               </ArchiveButton>
