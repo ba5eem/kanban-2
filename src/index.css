@@ -90,6 +90,51 @@ body{
 }
 
 
+.side-menu-users img{
+  margin: 5px;
+  max-width: 30px;
+  max-height: 30px;
+  margin-top: 20px;
+  filter: invert(100%);
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+}
+
+.side-menu-users-about img{
+  margin: 3px;
+  max-width: 33px;
+  max-height: 33px;
+  margin-top: 20px;
+  filter: invert(100%);
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+
+}
+
+
+.side-menu-users .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #3e4b59;
+    color: white;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
+/*
+.side-menu-users:hover .tooltiptext {
+    visibility: visible;
+}*/
+
+
+
+
+
+
+
+
+
+
 /* BOARD CONTAINER CSS */
 
 .board-container{
