@@ -54,7 +54,7 @@ class TopMenu extends Component {
         
 
         <div className="search-block">
-          <input className="search-input" placeholder="filter board" type="text"/>
+         {/* <input className="search-input" placeholder="filter board" type="text"/>*/}
         </div>
 
 
