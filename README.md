@@ -4,6 +4,10 @@
 
 * Team work makes the dream work, with strong communication and goal oriented planning. I built this web-app as a project submission during my JavaScript bootcamp at [DevLeague](https://www.devleague.com/).
 
+# Kanban Screenshot:
+<img src="./img.png" width="350"/>
+
+# Features:
  - Admin & User views
  - Add new cards
  - HTML5 Drag & Drop
@@ -11,7 +15,7 @@
  - Assign team members to cards
  - Analytics
 
-* Getting Started:
+# Getting Started:
 ```js
 npm install
 npm start
