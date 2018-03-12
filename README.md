@@ -1,12 +1,22 @@
-Kanban Project using ReactJS and Redux
+## KANBAN
+[![React](https://img.shields.io/badge/REACT-JS-blue.svg)](https://github.com/facebookincubator/create-react-app)
+[![DevLeague](https://img.shields.io/badge/DevLeague-Alumni-blue.svg)](https://www.devleague.com/)
 
-Post-DevLeague - Portfolio piece #1
+* Team work makes the dream work, with strong communication and goal oriented planning. I built this web-app as a project submission during my JavaScript bootcamp at [DevLeague](https://www.devleague.com/).
 
-Run Steps:
-1. NPM Install
-2. npm start
+ - Admin & User views
+ - Add new cards
+ - HTML5 Drag & Drop
+ - Delete/Edit Cards
+ - Assign team members to cards
+ - Analytics
 
-On refresh - page will reset
-Built in 3 days
+* Getting Started:
+```js
+npm install
+npm start
+```
 
-Enjoy!
+* Built with React & Redux - Mobile and Desktop Friendly
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
